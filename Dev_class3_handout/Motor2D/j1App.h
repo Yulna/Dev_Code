@@ -50,6 +50,10 @@ public:
 	// will one execute by the very end of the frame
 	// Load / Save
 
+	void Save();
+	void Load();
+
+
 private:
 
 	// Load config file

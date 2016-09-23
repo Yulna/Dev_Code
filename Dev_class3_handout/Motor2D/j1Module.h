@@ -60,6 +60,12 @@ public:
 	}
 
 	// TODO 2: Create new virtual methods to Load and Save
+	virtual bool SaveGame() {
+		return true;
+	}
+	virtual bool LoadGame() {
+		return true;
+	}
 
 public:
 

@@ -158,6 +158,26 @@ void j1App::PrepareUpdate()
 void j1App::FinishUpdate()
 {
 	// TODO 1: This is a good place to call load / Save functions
+	
+	if (want_to_save) {
+		SavegameNow();
+		want_to_save = false;
+	}
+
+	if (want_to_load) {
+		LoadGameNow();
+		want_to_load = false;
+	}
+}
+
+
+// Save/Load------------------------------------
+void j1App::Save() {
+	want_to_save = true;
+}
+
+void j1App::Load() {
+	want_to_load = true;
 }
 
 // Call modules before each loop iteration
@@ -225,6 +245,8 @@ bool j1App::PostUpdate()
 	return ret;
 }
 
+
+
 // Called before quitting
 bool j1App::CleanUp()
 {
@@ -273,6 +295,17 @@ const char* j1App::GetOrganization() const
 
 // TODO 4: Create a method to actually load an xml file
 // then call all the modules to load themselves
+
+bool j1App::LoadGameNow()
+{
+	return true;
+}
+
+bool j1App::SavegameNow() const
+{
+	return true;
+}
+
 
 // TODO 7: Create a method to save the current state
 // First fill a pugui::xml_document
