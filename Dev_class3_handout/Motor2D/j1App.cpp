@@ -162,11 +162,13 @@ void j1App::FinishUpdate()
 	if (want_to_save) {
 		SavegameNow();
 		want_to_save = false;
+		LOG("SAVE");
 	}
 
 	if (want_to_load) {
 		LoadGameNow();
 		want_to_load = false;
+		LOG("LOAD");
 	}
 }
 
@@ -298,12 +300,23 @@ const char* j1App::GetOrganization() const
 
 bool j1App::LoadGameNow()
 {
-	return true;
+	bool ret = true;
+	p2List_item<j1Module*>* it;
+	it = modules.start;
+	
+	for (; it != nullptr && ret == true; it = it->next) {
+
+		ret = it->data->LoadGame();
+	}
+
+	return ret;
 }
 
 bool j1App::SavegameNow() const
 {
-	return true;
+	bool ret = true;
+
+	return ret;
 }
 
 
