@@ -108,6 +108,8 @@ bool j1Map::Load(const char* file_name)
 
 	// TODO 4: Iterate all layers and load each of them
 
+
+
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
@@ -138,6 +140,7 @@ bool j1Map::Load(const char* file_name)
 	}
 
 	map_loaded = ret;
+
 
 	return ret;
 }
@@ -205,6 +208,9 @@ bool j1Map::LoadMap()
 		}
 	}
 
+
+	//LoadLayer(map, &layer);
+
 	return ret;
 }
 
@@ -270,3 +276,24 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 }
 
 
+
+bool j1Map::LoadLayer(pugi::xml_node& node, mapLayer* layer)
+{
+
+	layer->name = node.child("layer").attribute("name").as_string("Unknown");
+	layer->width = node.child("layer").attribute("width").as_int(0);
+	layer->height = node.child("layer").attribute("height").as_int(0);
+
+	int arraysize = layer->width * layer->height;
+
+	layer->gid = new uint[arraysize];
+
+	pugi::xml_node data;
+	int i;
+	for (data = node.child("layer").child("data").child("tile"), i = 0; i<arraysize; data = data.next_sibling("tile"), i++)
+	{
+		layer->gid[i] = data.attribute("gid").as_uint(0);
+	}
+
+	return true;
+}

@@ -95,11 +95,15 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	// TODO 3: Create a method that loads a single layer
-	//bool LoadLayer(pugi::xml_node& node, your_layer_struct* layer);
+	
+	bool LoadLayer(pugi::xml_node& node, mapLayer* layer);
+
+
 
 public:
 
 	MapData data;
+	mapLayer layer;
 
 private:
 
