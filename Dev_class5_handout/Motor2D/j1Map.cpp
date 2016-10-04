@@ -43,23 +43,12 @@ void j1Map::Draw()
 
 			p2Point<int> pos = MapToWorld(j, i);
 
-			App->render->Blit(data.tilesets.start->data->texture, pos.x , pos.y, &data.tilesets.start->data->GetTileRect(id-1));
+			App->render->Blit(data.tilesets.start->data->texture, pos.x , pos.y, &data.tilesets.start->data->GetTileRect(id));
 
 		}	
 	}
 	
-	/*
-	for (int i = 0; i < map_file.child("map").child("layer").attribute("height").as_int(); i++)
-	{
-		for (int j = 0; j < map_file.child("map").child("layer").attribute("width").as_int(); j++)
-		{
-			uint tile = data.layers.start->data->Get(j, i);
-			int id = data.layers.start->data->gid[tile];
 
-			App->render->Blit(data.tilesets.start->data->texture, j * 32, i * 32 + 150, &data.tilesets.start->data->GetTileRect(id));
-		}
-	}
-	*/
 	
 	// TODO 9: Complete the draw function
 }
@@ -71,6 +60,7 @@ inline uint MapLayer::Get(int x, int y) const
 
 SDL_Rect TileSet::GetTileRect(int id) const
 {
+	id = id - firstgid;
 	int n = tex_width/tile_width;
 
 	return{ (id%n) * 32 + spacing*(id%n) + margin , (id / n) * 32 + spacing*(id / n) + margin , tile_width, tile_height };
@@ -200,7 +190,7 @@ bool j1Map::Load(const char* file_name)
 
 iPoint j1Map::MapToWorld(int x, int y) const
 {
-	return iPoint( x*32, y*32);
+	return iPoint( x*data.tile_width, y*data.tile_height);
 }
 
 // Load map general properties
