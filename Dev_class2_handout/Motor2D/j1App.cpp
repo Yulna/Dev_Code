@@ -75,7 +75,7 @@ bool j1App::Awake()
 		pugi::xml_parse_result result = document.load_buffer(configBuffer, size);
 		LOG("%s", result.description());
 		
-		RELEASE(configBuffer);
+		RELEASE(configBuffer);		
 	}
 
 

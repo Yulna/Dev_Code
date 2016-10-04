@@ -33,8 +33,33 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5: Prepare the loop to draw all tilesets + Blit
+	for (int i = 0; i < map_file.child("map").child("layer").attribute("height").as_int(0); i++)
+	{
+		for (int j = 0; j < map_file.child("map").child("layer").attribute("width").as_int(0); j++)
+		{
+			uint id = data.layers.start->data->Get(j, i);
+
+			p2Point<int> pos = MapToWorld(j, i);
+
+			App->render->Blit(data.tilesets.start->data->texture, pos.x , pos.y, &data.tilesets.start->data->GetTileRect(id));
+
+		}	
+	}
+
 	
 	// TODO 9: Complete the draw function
+}
+
+inline uint MapLayer::Get(int x, int y) const
+{
+	return ((y)*width + x);
+}
+
+SDL_Rect TileSet::GetTileRect(int id) const
+{
+	int n = tex_width/tile_width;
+
+	return{ (id%n) * 32 + spacing*(id%n) + margin , (id / n) * 32 + spacing*(id / n) + margin , tile_width, tile_height };
 }
 
 
@@ -55,7 +80,7 @@ bool j1Map::CleanUp()
 	data.tilesets.clear();
 
 	// TODO 2: clean up all layer data
-	data.layers.Clear();
+	data.layers.clear();
 
 	// Clean up the pugui tree
 	map_file.reset();
@@ -107,6 +132,19 @@ bool j1Map::Load(const char* file_name)
 	}
 
 	// TODO 4: Iterate all layers and load each of them
+	pugi::xml_node layer;
+	for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
+	{
+		MapLayer* lay = new MapLayer();
+
+		if (ret == true) 
+		{
+			ret = LoadLayer(layer, lay);
+		}
+		
+		data.layers.add(lay);
+	}
+
 
 
 
@@ -127,7 +165,8 @@ bool j1Map::Load(const char* file_name)
 			item = item->next;
 		}
 
-		/* Adapt this code with the names of your variables/structs
+		// Adapt this code with the names of your variables/structs
+
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
 		while(item_layer != NULL)
 		{
@@ -136,13 +175,18 @@ bool j1Map::Load(const char* file_name)
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
-		} */
+		} 
 	}
 
 	map_loaded = ret;
 
 
 	return ret;
+}
+
+iPoint j1Map::MapToWorld(int x, int y) const
+{
+	return iPoint( x*32, y*32);
 }
 
 // Load map general properties
@@ -277,23 +321,26 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 
 
 
-bool j1Map::LoadLayer(pugi::xml_node& node, mapLayer* layer)
+bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 {
-
-	layer->name = node.child("layer").attribute("name").as_string("Unknown");
-	layer->width = node.child("layer").attribute("width").as_int(0);
-	layer->height = node.child("layer").attribute("height").as_int(0);
+	bool ret = true;
+	layer->name.create(node.attribute("name").as_string("Unknown"));
+	layer->width = node.attribute("width").as_int(0);
+	layer->height = node.attribute("height").as_int(0);
 
 	int arraysize = layer->width * layer->height;
 
 	layer->gid = new uint[arraysize];
+	
+	memset(layer->gid, 0, arraysize);
 
 	pugi::xml_node data;
 	int i;
-	for (data = node.child("layer").child("data").child("tile"), i = 0; i<arraysize; data = data.next_sibling("tile"), i++)
+	for (data = node.child("data").child("tile"), i = 0; i<arraysize; data = data.next_sibling("tile"), i++)
 	{
 		layer->gid[i] = data.attribute("gid").as_uint(0);
 	}
 
-	return true;
+	return ret;
 }
+

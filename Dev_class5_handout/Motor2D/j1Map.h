@@ -8,18 +8,22 @@
 #include "j1Module.h"
 
 // TODO 1: Create a struct for the map layer
-struct mapLayer
+struct MapLayer
 {
 	p2SString name;
 	int width;
 	int height;
 	uint* gid;
 
+
+	inline uint Get(int x, int y) const;
 };
 
 
 // TODO 6: Inside struct for the layer, create a short method to get the value of x,y
 // ----------------------------------------------------
+
+
 
 // ----------------------------------------------------
 struct TileSet
@@ -60,7 +64,7 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	// TODO 2: Add a list/array of layers to the map!
-	p2DynArray<mapLayer*> layers;
+	p2List<MapLayer*> layers;
 
 };
 
@@ -96,14 +100,14 @@ private:
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	// TODO 3: Create a method that loads a single layer
 	
-	bool LoadLayer(pugi::xml_node& node, mapLayer* layer);
+	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 
 
 
 public:
 
 	MapData data;
-	mapLayer layer;
+	MapLayer layer;
 
 private:
 
