@@ -41,7 +41,7 @@ void j1Map::Draw()
 			uint tile = data.layers.start->data->Get(j, i);
 			uint id = data.layers.start->data->gid[tile];
 
-			p2Point<int> pos = MapToWorld(j, i);
+			p2Point<int> pos = MapToWorld(j, i, data.type);
 
 			App->render->Blit(data.tilesets.start->data->texture, pos.x , pos.y, &data.tilesets.start->data->GetTileRect(id));
 
@@ -63,7 +63,7 @@ SDL_Rect TileSet::GetTileRect(int id) const
 	id = id - firstgid;
 	int n = tex_width/tile_width;
 
-	return{ (id%n) * 32 + spacing*(id%n) + margin , (id / n) * 32 + spacing*(id / n) + margin , tile_width, tile_height };
+	return{ (id%n) * tile_width + spacing*(id%n) + margin , (id / n) * tile_height + spacing*(id / n) + margin , tile_width, tile_height };
 }
 
 
@@ -188,10 +188,21 @@ bool j1Map::Load(const char* file_name)
 	return ret;
 }
 
-iPoint j1Map::MapToWorld(int x, int y) const
+iPoint j1Map::MapToWorld(int x, int y, MapTypes type) const
 {
-	return iPoint( x*data.tile_width, y*data.tile_height);
+	if (type == MAPTYPE_ISOMETRIC)
+		return iPoint((x - y) * data.tile_width / 2, (x + y) * data.tile_height / 2);
+
+	if (type == MAPTYPE_ORTHOGONAL)
+		return iPoint(x*data.tile_width, y*data.tile_height);
 }
+
+iPoint j1Map::WorldToMap(int x, int y) const
+{
+	return iPoint(x / data.tile_width, y / data.tile_height);
+}
+
+
 
 // Load map general properties
 bool j1Map::LoadMap()

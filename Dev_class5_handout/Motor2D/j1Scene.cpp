@@ -30,7 +30,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("hello2.tmx");
+	App->map->Load("iso.tmx");
 	return true;
 }
 
@@ -63,12 +63,19 @@ bool j1Scene::Update(float dt)
 
 	App->map->Draw();
 
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+	int x = 0;
+	int y = 0;
+
+	App->input->GetMousePosition(x, y);
+
+	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%i, %i",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.count());
+					App->map->data.tilesets.count(),
+					App->map->WorldToMap(x, y).x, App->map->WorldToMap(x, y).y );
 
 	App->win->SetTitle(title.GetString());
+
 	return true;
 }
 

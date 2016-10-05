@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Game\maps\hello2.tmx" />
+    <None Include="..\Game\maps\iso.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
