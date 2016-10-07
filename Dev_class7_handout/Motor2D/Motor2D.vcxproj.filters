@@ -113,5 +113,13 @@
     <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
       <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Desenvolupament  ========\xml">
+      <UniqueIdentifier>{a14f9dd6-dc91-4197-9389-04b09deb464e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Game\maps\iso.tmx">
+      <Filter>Desenvolupament  ========\xml</Filter>
+    </None>
   </ItemGroup>
 </Project>
