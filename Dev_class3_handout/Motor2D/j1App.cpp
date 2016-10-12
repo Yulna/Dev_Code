@@ -303,9 +303,16 @@ bool j1App::LoadGameNow()
 	bool ret = true;
 	p2List_item<j1Module*>* it;
 	it = modules.start;
+
+	//xml_node creation
+	pugi::xml_document save;
+	char* buf;
+
+	int size = App->fs->Load("Save.xml", &buf);
+
+
 	
 	for (; it != nullptr && ret == true; it = it->next) {
-
 		ret = it->data->LoadGame();
 	}
 

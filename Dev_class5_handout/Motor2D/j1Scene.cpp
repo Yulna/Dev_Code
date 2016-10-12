@@ -19,10 +19,13 @@ j1Scene::~j1Scene()
 {}
 
 // Called before render is available
-bool j1Scene::Awake()
+bool j1Scene::Awake(pugi::xml_node& node)
 {
 	LOG("Loading Scene");
 	bool ret = true;
+
+	xspeed = node.child("cameraspeed").attribute("x").as_int(0);
+	yspeed = node.child("cameraspeed").attribute("y").as_int(0);
 
 	return ret;
 }
@@ -50,16 +53,16 @@ bool j1Scene::Update(float dt)
 		App->SaveGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->render->camera.y -= 1;
+		App->render->camera.y -= yspeed;
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->render->camera.y += 1;
+		App->render->camera.y += yspeed;
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->render->camera.x -= 1;
+		App->render->camera.x -= xspeed;
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->render->camera.x += 1;
+		App->render->camera.x += xspeed;
 
 	App->map->Draw();
 
