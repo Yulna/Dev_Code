@@ -21,10 +21,10 @@ j1FileSystem::j1FileSystem(const char* game_path) : j1Module()
 	// TODO 2: Mount directory ".", then mount "data.zip"
 	// files in the folder should take precendence over the zip file!
 
-	if(PHYSFS_mount("./", "", 1))
+	if(PHYSFS_mount("./", NULL, 0))
 		LOG("PHYS MOUNT WORKED");
 
-	if (PHYSFS_mount("./data.zip", "", 1))
+	if (PHYSFS_mount("./data.zip", NULL, 0))
 		LOG("data.zip LOADED");
 
 }
@@ -55,23 +55,27 @@ bool j1FileSystem::Awake()
 unsigned int j1FileSystem::Load(const char* file, char** buffer) const
 {
 	unsigned int ret = 0;
-
 	unsigned int len;
-
-	// TODO 3: Read a file and allocate needed bytes to buffer and write all data into it
-	// return the size of the data
-	if (PHYSFS_openRead(file) == NULL)
-		LOG(PHYSFS_getLastError());
-	else
-		LOG("test.png OPENED");
 
 	PHYSFS_File* handle = PHYSFS_openRead(file);
 
-	len = PHYSFS_fileLength(handle);
-
-	*buffer = new char[len];
+	// TODO 3: Read a file and allocate needed bytes to buffer and write all data into it
+	// return the size of the data
+	if (handle != NULL) {
+		
+		LOG("test.png OPENED");
 	
-	ret = PHYSFS_read(handle, *buffer, len, 1);
+		len = PHYSFS_fileLength(handle);
+
+		*buffer = new char[len];
+
+		ret = PHYSFS_read(handle, *buffer, 1, len);
+
+	}
+
+	else
+		LOG(PHYSFS_getLastError());
+
 
 	return ret;
 }
@@ -82,9 +86,21 @@ SDL_RWops* j1FileSystem::Load(const char* file) const
 	// TODO 4: Using our previous Load method
 	// create a sdl rwops using SDL_RW_From_ConstMem()
 	// and return it if everything goes well
+	char* buffer = nullptr;
+	
+	int size = Load(file, &buffer);
 
-	if(SDL_RWFromConstMem(file, sizeof(file)) != NULL)
-		return SDL_RWFromConstMem(file, sizeof(file));
+	
+	if (size > 0) 
+	{
+		SDL_RWops* rw = SDL_RWFromConstMem(buffer, size);
+		if (rw != NULL)
+			rw->close = close_sdl_rwops;
+
+		return rw;
+	}
+
+
 
 	return NULL;
 }
