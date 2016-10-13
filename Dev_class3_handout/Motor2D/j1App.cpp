@@ -310,10 +310,19 @@ bool j1App::LoadGameNow()
 
 	int size = App->fs->Load("Save.xml", &buf);
 
+	pugi::xml_parse_result result = save.load_buffer(buf, size);
+
+	if (result == NULL) {
+		LOG("Could not load file: %s", result.description());
+		ret = false;
+	}
+
+	pugi::xml_node savenode = save.child("game_state");
 
 	
-	for (; it != nullptr && ret == true; it = it->next) {
-		ret = it->data->LoadGame();
+	for (; it != nullptr && ret == true; it = it->next)
+	{
+		ret = it->data->LoadGame(savenode.child(it->data->name.GetString()));
 	}
 
 	return ret;
@@ -322,7 +331,32 @@ bool j1App::LoadGameNow()
 bool j1App::SavegameNow() const
 {
 	bool ret = true;
+	pugi::xml_document save;
+	pugi::xml_node savenode;
 
+	p2List_item<j1Module*>* it = modules.start;
+	
+	savenode = save.append_child("game_state");
+
+	for (; it != nullptr && ret == true; it = it->next)
+	{
+		ret = it->data->SaveGame(savenode.append_child(it->data->name.GetString()));
+	}
+
+
+	if (ret == true)
+	{
+		std::stringstream stream;
+		save.save(stream);
+
+		fs->Save("Save.xml", stream.str().c_str(),stream.str().length());
+	
+	}
+	else
+		LOG("Failed at saving game file");
+
+	save.reset();
+	want_to_save = false;
 	return ret;
 }
 
