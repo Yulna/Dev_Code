@@ -59,8 +59,26 @@ bool j1FileSystem::Awake(pugi::xml_node& config)
 // Called before quitting
 bool j1FileSystem::CleanUp()
 {
+
+	Delete("delete_me.txt");
 	//LOG("Freeing File System subsystem");
 	return true;
+}
+
+
+bool j1FileSystem::Delete(const char* file_name)
+{
+	bool ret = false;
+
+	if (file_name != NULL)
+	{
+		if (PHYSFS_delete(file_name) == 0)
+			LOG("File System error while deleting (%s): %s\n", file_name, PHYSFS_getLastError());
+		else
+			ret = true;
+	}
+
+	return ret;
 }
 
 // Add a new zip file or folder

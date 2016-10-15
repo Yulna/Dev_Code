@@ -325,38 +325,43 @@ bool j1App::LoadGameNow()
 		ret = it->data->LoadGame(savenode.child(it->data->name.GetString()));
 	}
 
+	save.reset();
+
 	return ret;
 }
 
 bool j1App::SavegameNow() const
 {
 	bool ret = true;
-	pugi::xml_document save;
+
+	pugi::xml_document data;
 	pugi::xml_node savenode;
-
-	p2List_item<j1Module*>* it = modules.start;
 	
-	savenode = save.append_child("game_state");
+	savenode = data.append_child("game_state");
 
-	for (; it != nullptr && ret == true; it = it->next)
+	p2List_item<j1Module*>* item = modules.start;
+
+
+	for (; item != NULL && ret == true; item = item->next)
 	{
-		ret = it->data->SaveGame(savenode.append_child(it->data->name.GetString()));
+		ret = item->data->SaveGame(savenode.append_child(item->data->name.GetString()));
 	}
 
 
 	if (ret == true)
 	{
 		std::stringstream stream;
-		save.save(stream);
+		data.save(stream);
 
 		fs->Save("Save.xml", stream.str().c_str(),stream.str().length());
+		LOG("Stream saved");
 	
 	}
 	else
 		LOG("Failed at saving game file");
 
-	save.reset();
-	want_to_save = false;
+	
+	data.reset();
 	return ret;
 }
 

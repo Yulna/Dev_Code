@@ -35,6 +35,10 @@ public:
 private:
 	int xspeed;
 	int yspeed;
+
+	float player_x;
+	float player_y;
+	SDL_Texture* debug_tex;
 };
 
 #endif // __j1SCENE_H__
