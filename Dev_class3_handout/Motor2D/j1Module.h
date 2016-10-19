@@ -60,10 +60,10 @@ public:
 	}
 
 	// TODO 2: Create new virtual methods to Load and Save
-	virtual bool SaveGame() {
+	virtual bool SaveGame(pugi::xml_node&) const {
 		return true;
 	}
-	virtual bool LoadGame() {
+	virtual bool LoadGame(pugi::xml_node&) {
 		return true;
 	}
 

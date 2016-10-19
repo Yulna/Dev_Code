@@ -107,6 +107,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="..\Game\config.xml" />
     <Xml Include="..\Game\Save.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -303,11 +303,29 @@ bool j1App::LoadGameNow()
 	bool ret = true;
 	p2List_item<j1Module*>* it;
 	it = modules.start;
-	
-	for (; it != nullptr && ret == true; it = it->next) {
 
-		ret = it->data->LoadGame();
+	//xml_node creation
+	pugi::xml_document save;
+	char* buf;
+
+	int size = App->fs->Load("Save.xml", &buf);
+
+	pugi::xml_parse_result result = save.load_buffer(buf, size);
+
+	if (result == NULL) {
+		LOG("Could not load file: %s", result.description());
+		ret = false;
 	}
+
+	pugi::xml_node savenode = save.child("game_state");
+
+	
+	for (; it != nullptr && ret == true; it = it->next)
+	{
+		ret = it->data->LoadGame(savenode.child(it->data->name.GetString()));
+	}
+
+	save.reset();
 
 	return ret;
 }
@@ -316,6 +334,34 @@ bool j1App::SavegameNow() const
 {
 	bool ret = true;
 
+	pugi::xml_document data;
+	pugi::xml_node savenode;
+	
+	savenode = data.append_child("game_state");
+
+	p2List_item<j1Module*>* item = modules.start;
+
+
+	for (; item != NULL && ret == true; item = item->next)
+	{
+		ret = item->data->SaveGame(savenode.append_child(item->data->name.GetString()));
+	}
+
+
+	if (ret == true)
+	{
+		std::stringstream stream;
+		data.save(stream);
+
+		fs->Save("Save.xml", stream.str().c_str(),stream.str().length());
+		LOG("Stream saved");
+	
+	}
+	else
+		LOG("Failed at saving game file");
+
+	
+	data.reset();
 	return ret;
 }
 

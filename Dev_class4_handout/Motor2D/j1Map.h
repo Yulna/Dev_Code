@@ -70,7 +70,7 @@ public:
 	bool Load(const char* path);
 
 private:
-	bool LoadMap();
+	bool LoadMap(pugi::xml_node& mapconfig);
 
 public:
 
