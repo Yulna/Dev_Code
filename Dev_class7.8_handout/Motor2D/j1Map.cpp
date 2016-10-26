@@ -25,6 +25,8 @@ bool j1Map::Awake(pugi::xml_node& config)
 	folder.create(config.child("folder").child_value());
 	ResetPath();
 
+	endGoal = iPoint(-1,-1);
+
 	return ret;
 }
 
@@ -82,7 +84,8 @@ void j1Map::PropagateDijkstra()
 	// on each cell (is already reset to 0 automatically)
 
 	iPoint curr;
-	if (frontier.Pop(curr))
+	
+	if (frontier.Pop(curr) && (visited.find(endGoal) == -1))
 	{
 		iPoint neighbors[4];
 		neighbors[0].create(curr.x + 1, curr.y + 0);
@@ -110,7 +113,43 @@ void j1Map::PropagateDijkstra()
 		}
 	}
 
+}
 
+
+void j1Map::PropagateAStar()
+{
+
+	iPoint curr;
+
+	if ((breadcrumbs.find(endGoal) == -1))
+	{
+		frontier.Pop(curr);
+
+		iPoint neighbors[4];
+		neighbors[0].create(curr.x + 1, curr.y + 0);
+		neighbors[1].create(curr.x + 0, curr.y + 1);
+		neighbors[2].create(curr.x - 1, curr.y + 0);
+		neighbors[3].create(curr.x + 0, curr.y - 1);
+
+		for (uint i = 0; i < 4; ++i)
+		{
+			if (MovementCost(neighbors[i].x, neighbors[i].y) > -1)
+			{
+
+				if (visited.find(neighbors[i]) == -1)
+				{
+					frontier.Push(neighbors[i], MovementCost(neighbors[i].x, neighbors[i].y) + neighbors[i].DistanceManhattan(endGoal));
+					visited.add(neighbors[i]);
+					breadcrumbs.add(curr);
+
+					cost_so_far[neighbors[i].x][neighbors[i].y] += cost_so_far[curr.x][curr.y];
+
+				}
+			}
+
+
+		}
+	}
 
 }
 
@@ -123,9 +162,9 @@ int j1Map::MovementCost(int x, int y) const
 		int id = data.layers.start->next->data->Get(x, y);
 
 		if (id == 0)
-			ret = 3;
+			ret = 2;
 		else
-			ret = 1;
+			ret = 10;
 	}
 
 	return ret;
@@ -232,6 +271,10 @@ void j1Map::Draw()
 	}
 
 	DrawPath();
+	if (1) {
+		iPoint pos = MapToWorld(endGoal.x, endGoal.y);
+		App->render->Blit(tile_x, pos.x, pos.y);
+	}
 }
 
 int Properties::Get(const char* value, int default_value) const
