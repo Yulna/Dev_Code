@@ -167,6 +167,7 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
+	int ret = 0;
 	// TODO 1: if origin or destination are not walkable, return -1
 	if (IsWalkable(origin))
 		return -1;
@@ -191,6 +192,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 		// Use the Pathnode::parent and Flip() the path when you are finish
 		if (close.list.end->data.pos == destination)
 		{
+			last_path.Clear();
 			PathNode item = close.list.end->data;
 			while (item.parent != NULL)
 			{
@@ -204,26 +206,35 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 		// TODO 5: Fill a list of all adjancent nodes
 		PathList temp;
 		close.list.end->data.FindWalkableAdjacents(temp);
+		p2List_item<PathNode>* tempItem = temp.list.start;
 
 		// TODO 6: Iterate adjancent nodes:
 		// ignore nodes in the closed list
 		// If it is NOT found, calculate its F and add it to the open list
 		// If it is already in the open list, check if it is a better path (compare G)
 		// If it is a better path, Update the parent
-		while (temp.list.count() != 0)
+
+		while (tempItem)
 		{
-			if (close.Find(temp.list.start->data.pos) == NULL)
+			if (close.Find(tempItem->data.pos) == NULL)
 			{
+				temp.list.start->data.CalculateF(destination);
 
+				///Compare G
+				/*if (open.Find(tempItem->data.pos) != NULL)
+				{
 
+				}*/
+				open.list.add(temp.list.start->data);
 			}
 
-			temp.list.del(temp.list.start);
+			tempItem = tempItem->next;
+			ret++;
 		}
 
 
 
 	}
-	return -1;
+	return ret;
 }
 
