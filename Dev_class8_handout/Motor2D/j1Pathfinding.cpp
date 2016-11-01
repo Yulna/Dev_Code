@@ -220,13 +220,16 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 			if (close.Find(tempItem->data.pos) == NULL)
 			{
 				tempItem->data.CalculateF(destination);
-
 				///Compare G
-				/*if (open.Find(tempItem->data.pos) != NULL)
+				if (p2List_item<PathNode>* comparisor = open.Find(tempItem->data.pos))
 				{
-
-				}*/
-				open.list.add(tempItem->data);
+					if (comparisor->data.g > tempItem->data.g)
+					{
+						comparisor->data.parent = tempItem->data.parent;
+					}
+				}
+				else
+					open.list.add(tempItem->data);
 			}
 
 			tempItem = tempItem->next;
