@@ -183,17 +183,17 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	while (open.list.count() != 0)
 	{
 		// TODO 3: Move the lowest score cell from open list to the closed list
-		close.list.add(open.GetNodeLowestScore()->data);
+		p2List_item<PathNode>* activeNode = close.list.add(open.GetNodeLowestScore()->data);
 		open.list.del(open.GetNodeLowestScore());
 
 
 		// TODO 4: If we just added the destination, we are done!
 		// Backtrack to create the final path
 		// Use the Pathnode::parent and Flip() the path when you are finish
-		if (close.list.end->data.pos == destination)
+		if (activeNode->data.pos == destination)
 		{
 			last_path.Clear();
-			PathNode item = close.list.end->data;
+			PathNode item = activeNode->data;
 			while (item.parent != NULL)
 			{
 				last_path.PushBack(item.pos);
@@ -206,7 +206,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 		// TODO 5: Fill a list of all adjancent nodes
 		PathList temp;
-		close.list.end->data.FindWalkableAdjacents(temp);
+		activeNode->data.FindWalkableAdjacents(temp);
 		p2List_item<PathNode>* tempItem = temp.list.start;
 
 		// TODO 6: Iterate adjancent nodes:
