@@ -179,7 +179,7 @@ int PathNode::Score() const
 int PathNode::CalculateF(const iPoint& destination)
 {
 	g = parent->g + 1;
-	h = pos.DistanceManhattan(destination);
+	h = pos.DistanceNoSqrt(destination);
 
 	return g + h;
 }
