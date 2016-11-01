@@ -169,7 +169,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
 	int ret = 0;
 	// TODO 1: if origin or destination are not walkable, return -1
-	if (IsWalkable(origin))
+	if (!IsWalkable(origin) && !IsWalkable(destination))
 		return -1;
 
 	// TODO 2: Create two lists: open, close
@@ -200,6 +200,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 				item = *item.parent;
 			}
 			last_path.Flip();
+			return ret;
 		}
 		
 
@@ -218,14 +219,14 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 		{
 			if (close.Find(tempItem->data.pos) == NULL)
 			{
-				temp.list.start->data.CalculateF(destination);
+				tempItem->data.CalculateF(destination);
 
 				///Compare G
 				/*if (open.Find(tempItem->data.pos) != NULL)
 				{
 
 				}*/
-				open.list.add(temp.list.start->data);
+				open.list.add(tempItem->data);
 			}
 
 			tempItem = tempItem->next;

@@ -65,11 +65,13 @@ bool j1Scene::PreUpdate()
 		{
 			App->pathfinding->CreatePath(origin, p);
 			origin_selected = false;
+			LOG("Creating Path");
 		}
 		else
 		{
 			origin = p;
 			origin_selected = true;
+			LOG("Origin selected");
 		}
 	}
 
