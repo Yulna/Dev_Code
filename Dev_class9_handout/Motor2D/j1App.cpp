@@ -23,7 +23,7 @@
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
 	//
-	start = 
+	
 
 	input = new j1Input();
 	win = new j1Window();
