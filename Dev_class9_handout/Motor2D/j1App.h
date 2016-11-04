@@ -106,8 +106,18 @@ private:
 	mutable p2SString	save_game;
 
 	//Timers
-	Uint64 start, now;
+	j1PerfTimer perftimer;
+	j1Timer seconds_timer;
 
+	///global timer
+	j1Timer global_timer;
+
+	j1Timer fps_sectimer;
+	j1PerfTimer fps_timer;
+
+	uint64 total_fps;
+	uint64 last_sec_fps;
+	uint64 actual_sec_fps;
 };
 
 extern j1App* App; // No student is asking me about that ... odd :-S
