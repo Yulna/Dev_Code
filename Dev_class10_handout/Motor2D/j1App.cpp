@@ -177,6 +177,7 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	// TODO 4: Calculate the dt: differential time since last frame
+	dt = frame_time.ReadSec();
 	frame_time.Start();
 }
 
@@ -204,8 +205,14 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-			  avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last dt: %.3f  Last sec frames: %i  Time since startup: %.3f Frame Count: %lu",
+			 avg_fps, last_frame_ms, dt, frames_on_last_update, seconds_since_startup, frame_count);
+	
+	//sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u   Last sec frames: %i  Time since startup: %.3f Frame Count: %lu  Last dt: %.3f",
+		//avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count, dt);
+
+
+	//sprintf_s(title, 256, "Last dt: %.3f",dt );
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
@@ -262,7 +269,7 @@ bool j1App::DoUpdate()
 		// TODO 5: send dt as an argument to all updates
 		// you will need to update module parent class
 		// and all modules that use update
-		ret = item->data->Update();
+		ret = item->data->Update(dt);
 	}
 
 	return ret;
