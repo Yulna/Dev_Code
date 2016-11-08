@@ -4,7 +4,7 @@
   <app>
     <title>Pathfinding Test</title>
     <organization>UPC</organization>
-	<fps_cap value = "60" />
+	<fps_cap value="60"/>
   </app>
 	
   <renderer>

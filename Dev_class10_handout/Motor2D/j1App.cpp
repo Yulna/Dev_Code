@@ -14,6 +14,7 @@
 #include "j1Map.h"
 #include "j1Pathfinding.h"
 #include "j1App.h"
+#include "j1Player.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -28,6 +29,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	fs = new j1FileSystem();
 	map = new j1Map();
+	player = new j1Player();
 	pathfinding = new j1PathFinding();
 
 	// Ordered for awake / Start / Update
@@ -37,6 +39,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(player);
 	AddModule(map);
 	AddModule(scene);
 	AddModule(pathfinding);
@@ -90,7 +93,7 @@ bool j1App::Awake()
 		organization.create(app_config.child("organization").child_value());
 
 		// TODO 1: Read from config file your framerate cap
-		fps_cap = app_config.attribute("fps_cap").as_int(30);
+		fps_cap = app_config.child("fps_cap").attribute("value").as_int(30);
 	}
 
 	if(ret == true)
@@ -224,7 +227,7 @@ void j1App::FinishUpdate()
 
 	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
 
-	LOG("We waited for %f milliseconds and got back in %f", (frame_delay-last_frame_ms), delayptimer.ReadMs());
+	//LOG("We waited for %f milliseconds and got back in %f", (frame_delay-last_frame_ms), delayptimer.ReadMs());
 
 }
 
@@ -258,6 +261,8 @@ bool j1App::DoUpdate()
 	item = modules.start;
 	j1Module* pModule = NULL;
 
+	
+
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
 	{
 		pModule = item->data;
@@ -270,7 +275,15 @@ bool j1App::DoUpdate()
 		// you will need to update module parent class
 		// and all modules that use update
 		ret = item->data->Update(dt);
+
+		if (update_timer.ReadSec() >= 0.1f)
+		{
+			ret = item->data->UpdateTicks();
+		}
 	}
+
+	if (update_timer.ReadSec() > 0.1f)
+		update_timer.Start();
 
 	return ret;
 }

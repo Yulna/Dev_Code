@@ -17,6 +17,7 @@ class j1FileSystem;
 class j1Scene;
 class j1Map;
 class j1PathFinding;
+class j1Player;
 
 class j1App
 {
@@ -88,6 +89,7 @@ public:
 	j1Scene*			scene = NULL;
 	j1FileSystem*		fs = NULL;
 	j1Map*				map = NULL;
+	j1Player*			player = NULL;
 	j1PathFinding*		pathfinding = NULL;
 
 private:
@@ -112,6 +114,9 @@ private:
 	j1Timer				last_sec_frame_time;
 	uint32				last_sec_frame_count = 0;
 	uint32				prev_last_sec_frame_count = 0;
+
+	//Update timer
+	j1Timer update_timer;
 
 	uint32				fps_cap;
 	float				dt;

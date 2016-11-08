@@ -50,6 +50,12 @@ public:
 		return true;
 	}
 
+	//Called 10 times/sec
+	virtual bool UpdateTicks()
+	{
+		return true;
+	}
+
 	// Called each loop iteration
 	virtual bool PostUpdate()
 	{
