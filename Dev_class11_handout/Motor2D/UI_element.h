@@ -19,7 +19,10 @@ public:
 	UI_element(UItype type, iPoint pos, int w, int h);
 	~UI_element();
 
-
+	virtual void PreUpdate() {};
+	virtual void Update() {};
+	virtual void handle_input() {};
+	virtual void Draw();
 
 private:
 	UItype type;
