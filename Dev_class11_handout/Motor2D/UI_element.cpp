@@ -14,6 +14,8 @@ UI_element::~UI_element()
 {
 }
 
+
+
 void UI_element::Draw()
 {
 	App->render->Blit( App->gui->GetAtlas(), rect.x, rect.y, &anim->GetCurrentFrame());

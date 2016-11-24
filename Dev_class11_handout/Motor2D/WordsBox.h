@@ -12,15 +12,20 @@ public:
 	WordsBox(UItype type);
 	~WordsBox();
 
+	void Draw();
 	virtual void PreUpdate() {};
 	virtual void Update() {};
 	virtual void handle_input() {};
 
+
+
 	void SetSentence(p2SString* str);
 
 
-private:
+
+protected:
 	p2SString* words;
+
 
 };
 

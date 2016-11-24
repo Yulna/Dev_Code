@@ -28,7 +28,7 @@ public:
 	void SetRect(int x, int y, int w, int h);
 	void SetAnim(Animation* animation);
 
-private:
+protected:
 	UItype type;
 	SDL_Rect rect;
 	Animation* anim;
