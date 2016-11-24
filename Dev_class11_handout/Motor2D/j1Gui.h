@@ -2,12 +2,11 @@
 #define __j1GUI_H__
 
 #include "j1Module.h"
+#include "UI_element.h"
 
 #define CURSOR_WIDTH 2
 
 // TODO 1: Create your structure of classes
-
-
 
 // ---------------------------------------------------
 class j1Gui : public j1Module
@@ -43,6 +42,8 @@ private:
 
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
+
+	p2List<UI_element*> elements;
 };
 
 #endif // __j1GUI_H__

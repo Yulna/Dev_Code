@@ -2,13 +2,9 @@
 #include "j1Render.h"
 
 
-UI_element::UI_element(UItype type, iPoint pos, int w, int h)
+UI_element::UI_element(UItype type, int x, int y, int w, int h) : type(type), rect({x,y,w,h})
 {
-	type = type;
-	rect.x = pos.x;
-	rect.y = pos.y;
-	rect.w = w;
-	rect.h = h;
+
 }
 
 UI_element::~UI_element()

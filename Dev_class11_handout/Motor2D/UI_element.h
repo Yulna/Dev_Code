@@ -1,7 +1,7 @@
 #ifndef __UI_element_H__
 #define __UI_element_H__
 
-#include "j1Gui.h"
+
 #include "animation.h"
 
 class SDL_rect;
@@ -16,7 +16,7 @@ enum UItype {
 class UI_element
 {
 public:
-	UI_element(UItype type, iPoint pos, int w, int h);
+	UI_element(UItype type, int x, int y, int w, int h);
 	~UI_element();
 
 	virtual void PreUpdate() {};
