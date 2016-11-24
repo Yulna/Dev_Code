@@ -53,11 +53,13 @@ bool j1Gui::CleanUp()
 {
 	LOG("Freeing GUI");
 
+	//TODO: delete elements list
+
 	return true;
 }
 
 // const getter for atlas
-const SDL_Texture* j1Gui::GetAtlas() const
+SDL_Texture* j1Gui::GetAtlas() const
 {
 	return atlas;
 }
@@ -65,7 +67,7 @@ const SDL_Texture* j1Gui::GetAtlas() const
 UI_element * j1Gui::create(UItype type)
 {
 
-	return elements.add(&UI_element(type))->data;
+	return elements.add(new UI_element(type))->data;  //Need to delete this at cleanup
 }
 
 // class Gui ---------------------------------------------------

@@ -19,10 +19,11 @@ public:
 	UI_element(UItype type);
 	~UI_element();
 
-	virtual void PreUpdate() {};
-	virtual void Update() {};
-	virtual void handle_input() {};
 	virtual void Draw();
+	virtual void PreUpdate() {};
+	virtual void Update() { Draw(); };
+	virtual void handle_input() {};
+
 
 	void SetRect(int x, int y, int w, int h);
 	void SetAnim(Animation* animation);
