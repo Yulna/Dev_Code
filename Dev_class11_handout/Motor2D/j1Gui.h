@@ -44,6 +44,8 @@ private:
 	p2SString atlas_file_name;
 
 	p2List<UI_element*> elements;
+
+	UI_element* create(UItype type);
 };
 
 #endif // __j1GUI_H__

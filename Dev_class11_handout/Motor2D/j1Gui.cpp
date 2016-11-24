@@ -62,4 +62,10 @@ const SDL_Texture* j1Gui::GetAtlas() const
 	return atlas;
 }
 
+UI_element * j1Gui::create(UItype type)
+{
+
+	return elements.add(&UI_element(type))->data;
+}
+
 // class Gui ---------------------------------------------------

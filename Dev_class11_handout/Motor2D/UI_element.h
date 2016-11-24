@@ -16,13 +16,16 @@ enum UItype {
 class UI_element
 {
 public:
-	UI_element(UItype type, int x, int y, int w, int h);
+	UI_element(UItype type);
 	~UI_element();
 
 	virtual void PreUpdate() {};
 	virtual void Update() {};
 	virtual void handle_input() {};
 	virtual void Draw();
+
+	void SetRect(int x, int y, int w, int h);
+	void SetAnim(Animation* animation);
 
 private:
 	UItype type;
