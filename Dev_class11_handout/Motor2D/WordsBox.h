@@ -3,6 +3,7 @@
 
 #include "UI_element.h"
 #include "p2SString.h"
+#include "p2Log.h"
 
  
 class WordsBox : public UI_element
@@ -14,12 +15,12 @@ public:
 
 	void Draw();
 	virtual void PreUpdate() {};
-	virtual void Update() {};
+	virtual void Update() { };
 	virtual void handle_input() {};
 
 
 
-	void SetSentence(p2SString* str);
+	void SetSentence(const char* str);
 
 
 

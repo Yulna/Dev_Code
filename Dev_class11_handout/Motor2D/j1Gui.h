@@ -37,6 +37,7 @@ public:
 	// Gui creation functions
 
 	SDL_Texture* GetAtlas() const;
+	UI_element* create(UItype type);
 
 private:
 
@@ -45,7 +46,7 @@ private:
 
 	p2List<UI_element*> elements;
 
-	UI_element* create(UItype type);
+
 };
 
 #endif // __j1GUI_H__

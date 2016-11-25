@@ -3,6 +3,8 @@
 
 
 #include "animation.h"
+#include "p2Log.h"
+
 
 class SDL_rect;
 

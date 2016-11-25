@@ -39,12 +39,21 @@ bool j1Gui::Start()
 // Update all guis
 bool j1Gui::PreUpdate()
 {
+
 	return true;
 }
 
 // Called after all Updates
 bool j1Gui::PostUpdate()
 {
+	p2List_item<UI_element*>* item;
+	
+	for (item = elements.start; item != nullptr ; item = item->next )
+	{
+		item->data->Update();
+	}
+
+
 	return true;
 }
 
