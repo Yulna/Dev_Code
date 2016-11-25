@@ -30,6 +30,8 @@ public:
 	void SetRect(int x, int y, int w, int h);
 	void SetAnim(Animation* animation);
 
+	UItype GetType();
+
 protected:
 	UItype type;
 	SDL_Rect rect;

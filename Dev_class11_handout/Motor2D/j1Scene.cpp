@@ -50,13 +50,16 @@ bool j1Scene::Start()
 	// TODO 3: Create the image (rect {485, 829, 328, 103}) and the text "Hello World" as UI elements
 	
 	UI_element* image = App->gui->create(UI_ELEMENT);
-	image->SetRect(50, 50, 328, 103);
+	image->SetRect(100, 100, 328, 103);
 	Animation* test = new Animation;
 	test->PushBack({ 485,829,328,103 });
 	image->SetAnim(test);
 
-	//WordsBox* helloworld = (WordsBox*)App->gui->create(WORDSBOX);
-	//helloworld->SetSentence("Hello World");
+	WordsBox* helloworld = (WordsBox*)App->gui->create(WORDSBOX);
+	helloworld->SetSentence("Hello World");
+	Animation* test2 = new Animation;
+	test2->PushBack({0,0,50,100 });
+	helloworld->SetAnim(test2);
 
 	return true;
 }

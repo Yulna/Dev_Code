@@ -6,6 +6,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Gui.h"
+#include "WordsBox.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -50,7 +51,9 @@ bool j1Gui::PostUpdate()
 	
 	for (item = elements.start; item != nullptr ; item = item->next )
 	{
-		item->data->Update();
+		
+			item->data->Draw();
+
 	}
 
 
@@ -75,8 +78,10 @@ SDL_Texture* j1Gui::GetAtlas() const
 
 UI_element * j1Gui::create(UItype type)
 {
-
+if(type == UI_ELEMENT)
 	return elements.add(new UI_element(type))->data;  //Need to delete this at cleanup
+else
+	return elements.add(new WordsBox(type))->data;
 }
 
 // class Gui ---------------------------------------------------

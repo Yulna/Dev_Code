@@ -18,6 +18,7 @@ UI_element::~UI_element()
 
 void UI_element::Draw()
 {
+
 	App->render->Blit( App->gui->GetAtlas(), rect.x, rect.y, &anim->GetCurrentFrame());
 }
 
@@ -29,4 +30,9 @@ void UI_element::SetRect(int x, int y, int w, int h)
 void UI_element::SetAnim(Animation * animation)
 {
 	anim = animation;
+}
+
+UItype UI_element::GetType()
+{
+	return type;
 }

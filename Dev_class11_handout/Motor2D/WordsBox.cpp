@@ -16,16 +16,14 @@ WordsBox::~WordsBox()
 
 void WordsBox::Draw()
 {
-	Uint8 test = 255;
-	App->render->Blit(App->font->Print(words->GetString(), {(test, test, test, test)}, App->font->default), rect.x, rect.y, &anim->GetCurrentFrame());
-
+	App->render->Blit(App->font->Print(words->GetString(), {255,255,255,255}, nullptr), rect.x, rect.y);
 }
 
 
 
 void WordsBox::SetSentence(const char* str)
 {
-	p2SString stc = str;
-	words = &stc;
+	delete words;
+	words = new p2SString(str);
 }
 
