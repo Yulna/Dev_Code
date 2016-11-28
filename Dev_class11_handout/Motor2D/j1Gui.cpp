@@ -7,6 +7,7 @@
 #include "j1Input.h"
 #include "j1Gui.h"
 #include "UiText.h"
+#include "UiButton.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -85,6 +86,7 @@ UI_element * j1Gui::create(UItype type)
 		return elements.add(new UI_element(type))->data;
 		break;
 	case BUTTON:
+		return elements.add(new UiButton(type))->data;
 		break;
 	case WORDSBOX:
 		return elements.add(new UiText(type))->data;

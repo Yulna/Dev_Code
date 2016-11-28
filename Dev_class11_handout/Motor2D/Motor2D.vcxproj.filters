@@ -55,10 +55,10 @@
     <ClCompile Include="UI_element.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="UiText.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
-    <ClCompile Include="UiText.cpp">
+    <ClCompile Include="UiButton.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
   </ItemGroup>
@@ -138,10 +138,10 @@
     <ClInclude Include="animation.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="UiText.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
-    <ClInclude Include="UiText.h">
+    <ClInclude Include="UiButton.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
   </ItemGroup>

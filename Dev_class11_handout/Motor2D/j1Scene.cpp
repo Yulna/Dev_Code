@@ -12,6 +12,7 @@
 #include "j1Scene.h"
 
 #include "UiText.h"
+#include "UiButton.h"
 
 
 j1Scene::j1Scene() : j1Module()
@@ -49,15 +50,22 @@ bool j1Scene::Start()
 
 	// TODO 3: Create the image (rect {485, 829, 328, 103}) and the text "Hello World" as UI elements
 	
+	//Image test
 	UI_element* image = App->gui->create(UI_ELEMENT);
 	image->SetRect( 485,829,328,103 );
 	image->SetPos(100, 100);
 
+	//Button test
+	UiButton* button = (UiButton*)App->gui->create(BUTTON);
+	button->SetRect(1, 110, 229, 70 );
+	button->SetPos(200, 200);
+
+	//Text test
 	UiText* helloworld = (UiText*)App->gui->create(WORDSBOX);
 	helloworld->SetSentence("Hello World");
 	helloworld->SetPos(0, 0);
 	helloworld->SetRect(0, 0, 50, 100);
-
+	
 	return true;
 }
 
