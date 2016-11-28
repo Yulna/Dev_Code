@@ -4,6 +4,7 @@
 
 #include "animation.h"
 #include "p2Log.h"
+#include "p2Point.h"
 
 
 class SDL_rect;
@@ -22,20 +23,20 @@ public:
 	~UI_element();
 
 	virtual void Draw();
-	virtual void PreUpdate() {};
-	virtual void Update() { Draw(); };
 	virtual void handle_input() {};
 
 
 	void SetRect(int x, int y, int w, int h);
-	void SetAnim(Animation* animation);
+	void SetPos(int x, int y);
+
 
 	UItype GetType();
 
 protected:
 	UItype type;
-	SDL_Rect rect;
-	Animation* anim;
+	iPoint pos;
+	SDL_Rect* rect;
+
 
 };
 

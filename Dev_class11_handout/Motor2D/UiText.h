@@ -1,21 +1,19 @@
-#ifndef __WORDSBOX_H__
-#define __WORDSBOX_H__
+#ifndef __UITEXT_H__
+#define __UITEXT_H__
 
 #include "UI_element.h"
 #include "p2SString.h"
 
 
  
-class WordsBox : public UI_element
+class UiText : public UI_element
 {
 public:
 
-	WordsBox(UItype type);
-	~WordsBox();
+	UiText(UItype type);
+	~UiText();
 
 	void Draw();
-	virtual void PreUpdate() {};
-	virtual void Update() { Draw(); };
 	virtual void handle_input() {};
 
 

@@ -58,7 +58,7 @@
     <ClCompile Include="Button.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
-    <ClCompile Include="WordsBox.cpp">
+    <ClCompile Include="UiText.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
   </ItemGroup>
@@ -141,7 +141,7 @@
     <ClInclude Include="Button.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
-    <ClInclude Include="WordsBox.h">
+    <ClInclude Include="UiText.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
   </ItemGroup>

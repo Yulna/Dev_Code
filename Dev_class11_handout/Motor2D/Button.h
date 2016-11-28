@@ -2,7 +2,7 @@
 #define __BUTTON_H__
 
 #include "UI_element.h"
-#include "WordsBox.h" 
+#include "UiText.h" 
 
 class Button : public UI_element
 {

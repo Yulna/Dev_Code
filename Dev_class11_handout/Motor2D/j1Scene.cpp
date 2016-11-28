@@ -11,7 +11,7 @@
 #include "j1Gui.h"
 #include "j1Scene.h"
 
-#include "WordsBox.h"
+#include "UiText.h"
 
 
 j1Scene::j1Scene() : j1Module()
@@ -50,16 +50,13 @@ bool j1Scene::Start()
 	// TODO 3: Create the image (rect {485, 829, 328, 103}) and the text "Hello World" as UI elements
 	
 	UI_element* image = App->gui->create(UI_ELEMENT);
-	image->SetRect(100, 100, 328, 103);
-	Animation* test = new Animation;
-	test->PushBack({ 485,829,328,103 });
-	image->SetAnim(test);
+	image->SetRect( 485,829,328,103 );
+	image->SetPos(100, 100);
 
-	WordsBox* helloworld = (WordsBox*)App->gui->create(WORDSBOX);
+	UiText* helloworld = (UiText*)App->gui->create(WORDSBOX);
 	helloworld->SetSentence("Hello World");
-	Animation* test2 = new Animation;
-	test2->PushBack({0,0,50,100 });
-	helloworld->SetAnim(test2);
+	helloworld->SetPos(0, 0);
+	helloworld->SetRect(0, 0, 50, 100);
 
 	return true;
 }

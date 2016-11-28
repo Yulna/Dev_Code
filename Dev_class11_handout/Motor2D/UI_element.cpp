@@ -6,8 +6,8 @@
 
 UI_element::UI_element(UItype type) : type(type)
 {
-	rect = { 0,0,0,0 };
-	anim = nullptr;
+	rect = nullptr;
+
 }
 
 UI_element::~UI_element()
@@ -19,18 +19,20 @@ UI_element::~UI_element()
 void UI_element::Draw()
 {
 
-	App->render->Blit( App->gui->GetAtlas(), rect.x, rect.y, &anim->GetCurrentFrame());
+	App->render->Blit( App->gui->GetAtlas(), pos.x, pos.y, rect);
 }
 
 void UI_element::SetRect(int x, int y, int w, int h)
 {
-	rect = { x,y,w,h };
+	rect = new SDL_Rect{ x,y,w,h };
 }
 
-void UI_element::SetAnim(Animation * animation)
+void UI_element::SetPos(int x, int y)
 {
-	anim = animation;
+	pos = iPoint(x, y);
 }
+
+
 
 UItype UI_element::GetType()
 {
