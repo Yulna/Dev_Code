@@ -61,10 +61,9 @@ bool j1Scene::Start()
 	button->SetPos(200, 200);
 
 	//Text test
-	UiText* helloworld = (UiText*)App->gui->create(WORDSBOX);
+	helloworld = (UiText*)App->gui->create(WORDSBOX);
 	helloworld->SetSentence("Hello World");
-	helloworld->SetPos(0, 0);
-	helloworld->SetRect(0, 0, 50, 100);
+	helloworld->SetPos(500, 200);
 	
 	return true;
 }
@@ -72,6 +71,17 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	
+	{
+		int x, y;
+		App->input->GetMousePosition(x, y);
+		//test
+		if (helloworld->mouseIn(x, y))
+		{
+			helloworld->SetSentence("MouseIn");
+		}
+
+	}
 
 	// debug pathfing ------------------
 	static iPoint origin;

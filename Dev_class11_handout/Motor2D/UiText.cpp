@@ -17,7 +17,7 @@ UiText::~UiText()
 
 void UiText::Draw()
 {
-	App->render->Blit(App->font->Print(words->GetString(), {255,255,255,255}, nullptr), pos.x, pos.y);
+	App->render->Blit(App->font->Print(words->GetString(), {255,255,255,255}, nullptr), pos.x, pos.y, rect);
 }
 
 
@@ -26,5 +26,10 @@ void UiText::SetSentence(const char* str)
 {
 	delete words;
 	words = new p2SString(str);
+
+	int w, h;
+	App->font->CalcSize(words->GetString(), w, h);
+
+	rect = new SDL_Rect{ 0,0,w,h };
 }
 

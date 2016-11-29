@@ -7,7 +7,7 @@
 #include "p2Point.h"
 
 
-class SDL_rect;
+class SDL_Rect;
 
 enum UItype {
 	UI_ELEMENT,
@@ -25,10 +25,10 @@ public:
 	virtual void Draw();
 	virtual void handle_input() {};
 
-
+	bool mouseIn(int x, int y);
 	void SetRect(int x, int y, int w, int h);
 	void SetPos(int x, int y);
-
+    
 
 	UItype GetType();
 

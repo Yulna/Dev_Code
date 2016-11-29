@@ -12,6 +12,8 @@ UI_element::UI_element(UItype type) : type(type)
 
 UI_element::~UI_element()
 {
+	if (rect != nullptr)
+		delete rect;
 }
 
 
@@ -20,6 +22,11 @@ void UI_element::Draw()
 {
 
 	App->render->Blit( App->gui->GetAtlas(), pos.x, pos.y, rect);
+}
+
+bool UI_element::mouseIn(int x, int y)
+{
+	return ((x >= pos.x && x <= rect->w+pos.x) && (y >= pos.y && y <= rect->h+pos.y));
 }
 
 void UI_element::SetRect(int x, int y, int w, int h)
