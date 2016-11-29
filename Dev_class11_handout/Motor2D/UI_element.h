@@ -2,9 +2,10 @@
 #define __UI_element_H__
 
 
-#include "animation.h"
+
 #include "p2Log.h"
 #include "p2Point.h"
+#include "j1Input.h"
 
 
 class SDL_Rect;
@@ -23,7 +24,7 @@ public:
 	~UI_element();
 
 	virtual void Draw();
-	virtual void handle_input() {};
+	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate) {};
 
 	bool mouseIn(int x, int y);
 	void SetRect(int x, int y, int w, int h);

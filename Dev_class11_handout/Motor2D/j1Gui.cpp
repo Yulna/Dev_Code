@@ -99,4 +99,15 @@ UI_element * j1Gui::create(UItype type)
 
 }
 
+void j1Gui::InputReader(iPoint mousepos, int key, j1KeyState keystate)
+{
+	p2List_item<UI_element*>* item;
+
+	for (item = elements.start; item != nullptr; item = item->next)
+	{
+			item->data->handle_input(mousepos, key, keystate);
+	}
+
+}
+
 // class Gui ---------------------------------------------------

@@ -39,6 +39,8 @@ public:
 	SDL_Texture* GetAtlas() const;
 	UI_element* create(UItype type);
 
+	void InputReader(iPoint mousepos, int key, j1KeyState keystate);
+
 private:
 
 	SDL_Texture* atlas;

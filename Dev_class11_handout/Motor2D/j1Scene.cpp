@@ -74,14 +74,12 @@ bool j1Scene::PreUpdate()
 	
 	{
 		int x, y;
-		App->input->GetMousePosition(x, y);
-		//test
-		if (helloworld->mouseIn(x, y))
-		{
-			helloworld->SetSentence("MouseIn");
-		}
-
+		App->input->GetMousePosition(x, y); 
+		App->gui->InputReader(iPoint(x, y), NULL, KEY_IDLE);
+	
 	}
+
+
 
 	// debug pathfing ------------------
 	static iPoint origin;
@@ -91,6 +89,7 @@ bool j1Scene::PreUpdate()
 	App->input->GetMousePosition(x, y);
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
+
 
 	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
@@ -104,6 +103,12 @@ bool j1Scene::PreUpdate()
 			origin = p;
 			origin_selected = true;
 		}
+	}
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+	{
+		App->gui->InputReader(iPoint(x, y), SDL_BUTTON_LEFT, KEY_REPEAT);
+
 	}
 
 	return true;

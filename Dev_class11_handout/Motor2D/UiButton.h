@@ -10,6 +10,8 @@ public:
 	UiButton(UItype type);
 	~UiButton();
 
+	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);
+
 private:
 	
 	UiText* linkedText;

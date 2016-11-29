@@ -20,6 +20,24 @@ void UiText::Draw()
 	App->render->Blit(App->font->Print(words->GetString(), {255,255,255,255}, nullptr), pos.x, pos.y, rect);
 }
 
+void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
+{
+	if (mouseIn(mousepos.x, mousepos.y))
+	{
+		if (key != NULL, keystate != NULL)
+		{
+			SetSentence("Some key pressed");  //TODO: Define the key states that could trigger UiText
+		}
+		else
+			SetSentence("MouseInside");
+	}
+	else
+		SetSentence("MouseOut");
+
+}
+
+
+
 
 
 void UiText::SetSentence(const char* str)
