@@ -6,7 +6,6 @@
 
 #define CURSOR_WIDTH 2
 
-// TODO 1: Create your structure of classes
 
 // ---------------------------------------------------
 class j1Gui : public j1Module
@@ -33,11 +32,11 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	// TODO 2: Create the factory methods
+
 	// Gui creation functions
 
 	SDL_Texture* GetAtlas() const;
-	UI_element* create(UItype type);
+	UI_element* create(UItype type, UI_element* parent);
 
 	void InputReader(iPoint mousepos, int key, j1KeyState keystate);
 

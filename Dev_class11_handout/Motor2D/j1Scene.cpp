@@ -48,20 +48,20 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	// TODO 3: Create the image (rect {485, 829, 328, 103}) and the text "Hello World" as UI elements
+	
 	
 	//Image test
-	UI_element* image = App->gui->create(UI_ELEMENT);
+	UI_element* image = App->gui->create(UI_ELEMENT, nullptr);
 	image->SetRect( 485,829,328,103 );
 	image->SetPos(100, 100);
 
 	//Button test
-	UiButton* button = (UiButton*)App->gui->create(BUTTON);
+	UiButton* button = (UiButton*)App->gui->create(BUTTON, nullptr);
 	button->SetRect(1, 110, 229, 70 );
 	button->SetPos(200, 200);
 
 	//Text test
-	helloworld = (UiText*)App->gui->create(WORDSBOX);
+	helloworld = (UiText*)App->gui->create(WORDSBOX, nullptr);
 	helloworld->SetSentence("Hello World");
 	helloworld->SetPos(500, 200);
 	

@@ -7,7 +7,7 @@
 class UiButton : public UI_element
 {
 public:
-	UiButton(UItype type);
+	UiButton(UItype type, UI_element* parent);
 	~UiButton();
 
 	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);

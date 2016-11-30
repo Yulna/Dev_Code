@@ -20,7 +20,7 @@ enum UItype {
 class UI_element
 {
 public:
-	UI_element(UItype type);
+	UI_element(UItype type, UI_element* parent);
 	~UI_element();
 
 	virtual void Draw();
@@ -37,7 +37,7 @@ protected:
 	UItype type;
 	iPoint pos;
 	SDL_Rect* rect;
-
+	UI_element* parent;
 
 };
 

@@ -6,7 +6,7 @@
 #include "j1Fonts.h"
 
 
-UiText::UiText(UItype type) : UI_element(type)
+UiText::UiText(UItype type, UI_element* parent) : UI_element(type, parent)
 {
 }
 

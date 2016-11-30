@@ -4,7 +4,7 @@
 #include "j1Gui.h"
 
 
-UI_element::UI_element(UItype type) : type(type)
+UI_element::UI_element(UItype type, UI_element* parent) : type(type), parent(parent)
 {
 	rect = nullptr;
 

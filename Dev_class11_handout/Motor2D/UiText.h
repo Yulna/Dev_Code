@@ -10,7 +10,7 @@ class UiText : public UI_element
 {
 public:
 
-	UiText(UItype type);
+	UiText(UItype type, UI_element* parent);
 	~UiText();
 
 	void Draw();

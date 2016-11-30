@@ -75,7 +75,7 @@ SDL_Texture* j1Gui::GetAtlas() const
 	return atlas;
 }
 
-UI_element * j1Gui::create(UItype type)
+UI_element * j1Gui::create(UItype type, UI_element* parent)
 {
 	//Elements factory
 	//Need to delete this at cleanup
@@ -83,13 +83,13 @@ UI_element * j1Gui::create(UItype type)
 	switch (type)
 	{
 	case UI_ELEMENT:
-		return elements.add(new UI_element(type))->data;
+		return elements.add(new UI_element(type, parent))->data;
 		break;
 	case BUTTON:
-		return elements.add(new UiButton(type))->data;
+		return elements.add(new UiButton(type, parent))->data;
 		break;
 	case WORDSBOX:
-		return elements.add(new UiText(type))->data;
+		return elements.add(new UiText(type, parent))->data;
 		break;
 	case WRITABLEBOX:
 		break;
@@ -101,6 +101,10 @@ UI_element * j1Gui::create(UItype type)
 
 void j1Gui::InputReader(iPoint mousepos, int key, j1KeyState keystate)
 {
+	//TODO: Iterar array de tecles i buscar la tecla que s'ha activat, despres passar el handle_input
+	
+	
+
 	p2List_item<UI_element*>* item;
 
 	for (item = elements.start; item != nullptr; item = item->next)

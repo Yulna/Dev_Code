@@ -1,7 +1,7 @@
 #include "UiButton.h"
 
 
-UiButton::UiButton(UItype type) : UI_element(type)
+UiButton::UiButton(UItype type, UI_element* parent) : UI_element(type, parent)
 {
 	linkedText = nullptr;
 }
