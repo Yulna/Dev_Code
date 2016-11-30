@@ -101,17 +101,25 @@ UI_element * j1Gui::create(UItype type, UI_element* parent)
 
 void j1Gui::InputReader(iPoint mousepos, int key, j1KeyState keystate)
 {
-	//TODO: Iterar array de tecles i buscar la tecla que s'ha activat, despres passar el handle_input
-	
-	
 
 	p2List_item<UI_element*>* item;
 
+	//TODO: Iterar array de tecles i buscar la tecla que s'ha activat, despres passar el handle_input
+	/*
+	for (int i = 0; i < 300; i++) //TODO: Change that 300 
+	{
+		if (App->input->keyboard[i] != KEY_IDLE)
+		{
+			
+
+		}
+	}
+	*/
+
 	for (item = elements.start; item != nullptr; item = item->next)
 	{
-			item->data->handle_input(mousepos, key, keystate);
+		item->data->handle_input(mousepos, key, keystate);
 	}
-
 }
 
 // class Gui ---------------------------------------------------

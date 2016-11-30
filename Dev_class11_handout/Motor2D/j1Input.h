@@ -28,6 +28,8 @@ enum j1KeyState
 class j1Input : public j1Module
 {
 
+friend class j1Gui;
+
 public:
 
 	j1Input();

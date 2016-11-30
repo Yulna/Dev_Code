@@ -20,10 +20,10 @@ void UiButton::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 	{
 		if (key != NULL, keystate != NULL)
 		{
-			SetRect(412, 166, 229, 72);
+			SetRect(643, 166, 229, 72);
 		}
 		else
-			SetRect(643, 166, 229, 72);
+			SetRect(412, 166, 229, 72);
 	}
 	else
 		SetRect(1, 110, 229, 70);
