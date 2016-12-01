@@ -29,7 +29,7 @@ public:
 	bool mouseIn(int x, int y);
 	void SetRect(int x, int y, int w, int h);
 	void SetPos(int x, int y);
-    
+	void Move(int x, int y);
 
 	UItype GetType();
 

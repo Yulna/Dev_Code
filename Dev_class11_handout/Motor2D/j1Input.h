@@ -70,6 +70,12 @@ public:
 	void GetMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
 
+
+	//My functions
+	void GetMouseDelta(int& x, int& y);
+
+
+
 private:
 	bool		windowEvents[WE_COUNT];
 	j1KeyState*	keyboard;
@@ -78,6 +84,8 @@ private:
 	int			mouse_motion_y;
 	int			mouse_x;
 	int			mouse_y;
+	int			prev_mouse_x;
+	int			prev_mouse_y;
 };
 
 #endif // __j1INPUT_H__

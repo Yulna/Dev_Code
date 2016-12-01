@@ -39,6 +39,12 @@ void UI_element::SetPos(int x, int y)
 	pos = iPoint(x, y);
 }
 
+void UI_element::Move(int x, int y)
+{
+	pos.x = pos.x + x;
+	pos.y = pos.y + y;
+}
+
 
 
 UItype UI_element::GetType()

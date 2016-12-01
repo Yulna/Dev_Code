@@ -2,7 +2,6 @@
 #define __UIBUTTON_H__
 
 #include "UI_element.h"
-#include "UiText.h" 
 
 class UiButton : public UI_element
 {
@@ -14,7 +13,6 @@ public:
 
 private:
 	
-	UiText* linkedText;
 
 };
 

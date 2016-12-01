@@ -61,7 +61,7 @@ bool j1Scene::Start()
 	button->SetPos(200, 200);
 
 	//Text test
-	helloworld = (UiText*)App->gui->create(WORDSBOX, nullptr);
+	helloworld = (UiText*)App->gui->create(WORDSBOX, button);
 	helloworld->SetSentence("Hello World");
 	helloworld->SetPos(500, 200);
 	
@@ -110,6 +110,7 @@ bool j1Scene::PreUpdate()
 		App->gui->InputReader(iPoint(x, y), SDL_BUTTON_LEFT, KEY_REPEAT);
 
 	}
+	
 
 	return true;
 }

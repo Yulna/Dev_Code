@@ -22,17 +22,22 @@ void UiText::Draw()
 
 void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 {
-	if (mouseIn(mousepos.x, mousepos.y))
-	{
-		if (key != NULL, keystate != NULL)
+
+
+		if (mouseIn(mousepos.x, mousepos.y))
 		{
-			SetSentence("Some key pressed");  //TODO: Define the key states that could trigger UiText
+			if (key != NULL, keystate != NULL)
+			{
+				SetSentence("Some key pressed");  //TODO: Define the key states that could trigger UiText
+			}
+			else
+				SetSentence("MouseInside");
 		}
 		else
-			SetSentence("MouseInside");
+			SetSentence("MouseOut");
 	}
 	else
-		SetSentence("MouseOut");
+
 
 }
 
