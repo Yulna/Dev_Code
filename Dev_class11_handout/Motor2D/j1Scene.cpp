@@ -13,6 +13,7 @@
 
 #include "UiText.h"
 #include "UiButton.h"
+#include "UiWritable.h"
 
 
 j1Scene::j1Scene() : j1Module()
@@ -51,20 +52,31 @@ bool j1Scene::Start()
 	
 	
 	//Image test
-	UI_element* image = App->gui->create(UI_ELEMENT, nullptr);
-	image->SetRect( 485,829,328,103 );
-	image->SetPos(100, 100);
+	UI_element* window = App->gui->create(UI_ELEMENT, nullptr);
+	window->SetRect( 15,515,466,508 );
+	window->SetPos(100, 100);
 
 	//Button test
-	UiButton* button = (UiButton*)App->gui->create(BUTTON, nullptr);
+	UiButton* button = (UiButton*)App->gui->create(UI_BUTTON, nullptr);
 	button->SetRect(1, 110, 229, 70 );
 	button->SetPos(200, 200);
 
 	//Text test
-	helloworld = (UiText*)App->gui->create(WORDSBOX, button);
+	helloworld = (UiText*)App->gui->create(UI_LABEL, button);
 	helloworld->SetSentence("Hello World");
 	helloworld->SetPos(500, 200);
-	
+
+
+
+	//Writable text testing
+	UI_element* text_back = App->gui->create(UI_ELEMENT, nullptr);
+	text_back->SetRect(486,	564,350 ,69);
+	text_back->SetPos(500, 600);
+
+	UiWritable* writable = (UiWritable*)App->gui->create(UI_WRITABLE, text_back);
+	text_back->SetPos(500, 600);
+
+
 	return true;
 }
 

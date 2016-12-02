@@ -8,6 +8,7 @@
 #include "j1Gui.h"
 #include "UiText.h"
 #include "UiButton.h"
+#include "UiWritable.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -85,13 +86,14 @@ UI_element * j1Gui::create(UItype type, UI_element* parent)
 	case UI_ELEMENT:
 		return elements.add(new UI_element(type, parent))->data;
 		break;
-	case BUTTON:
+	case UI_BUTTON:
 		return elements.add(new UiButton(type, parent))->data;
 		break;
-	case WORDSBOX:
+	case UI_LABEL:
 		return elements.add(new UiText(type, parent))->data;
 		break;
-	case WRITABLEBOX:
+	case UI_WRITABLE:
+		return elements.add(new UiWritable(type, parent))->data;
 		break;
 	default:
 		break;

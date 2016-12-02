@@ -12,12 +12,22 @@ UiText::UiText(UItype type, UI_element* parent) : UI_element(type, parent)
 
 UiText::~UiText()
 {
+	if(words != nullptr)
 	delete words;
 }
 
 void UiText::Draw()
 {
-	App->render->Blit(App->font->Print(words->GetString(), {255,255,255,255}, nullptr), pos.x, pos.y, rect);
+	if (words != nullptr)
+	{
+		if (parent != nullptr)
+		{
+			
+			App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), parent->pos.x + pos.x, parent->pos.y + pos.y, rect);
+		}
+		else
+			App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), pos.x, pos.y, rect);
+	}
 }
 
 void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
@@ -35,10 +45,7 @@ void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 		}
 		else
 			SetSentence("MouseOut");
-	}
-	else
-
-
+	
 }
 
 
@@ -47,9 +54,12 @@ void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 
 void UiText::SetSentence(const char* str)
 {
-	delete words;
-	words = new p2SString(str);
+	if (words != nullptr)
+	{
+		delete words;
+	}
 
+	words = new p2SString(str);
 	int w, h;
 	App->font->CalcSize(words->GetString(), w, h);
 

@@ -21,7 +21,7 @@ public:
 
 
 protected:
-	p2SString* words;
+	p2SString* words = nullptr;
 
 
 };

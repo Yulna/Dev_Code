@@ -53,10 +53,9 @@ bool j1Input::PreUpdate()
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
 	//Delta mouse calculation variables
-	//Setting the prev_mouse = mouse, since the mouse pos will change this same update.
-	prev_mouse_x = mouse_x;
-	prev_mouse_y = mouse_y;
-
+	//Setting the mouse motion to 0, so it doesn't retain a value when mouse moves.
+	mouse_motion_x = 0;
+	mouse_motion_y = 0;
 
 	for(int i = 0; i < MAX_KEYS; ++i)
 	{
@@ -163,10 +162,4 @@ void j1Input::GetMouseMotion(int& x, int& y)
 	y = mouse_motion_y;
 }
 
-void j1Input::GetMouseDelta(int & x, int & y)
-{
-	//Will return zero if the mouse don't move since: mouse == prev_mouse (See PreUpdate)
-	x = mouse_x - prev_mouse_x;
-	y = mouse_y - prev_mouse_y;
-}
 

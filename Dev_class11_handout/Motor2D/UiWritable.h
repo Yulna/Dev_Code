@@ -7,8 +7,12 @@ class UiWritable : public UiText
 {
 public:
 	
+	UiWritable(UItype type, UI_element* parent);
 	UiWritable(UItype type, UI_element* parent, bool password);
 	~UiWritable();
+
+	void handle_input(iPoint mousepos, int key, j1KeyState keystate);
+
 
 
 private:

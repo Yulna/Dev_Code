@@ -28,7 +28,7 @@ void UiButton::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 			{
 				
 				int x, y;
-				App->input->GetMouseDelta(x, y);
+				App->input->GetMouseMotion(x, y);
 				Move(x, y);
 
 				SetRect(643, 166, 229, 72);
