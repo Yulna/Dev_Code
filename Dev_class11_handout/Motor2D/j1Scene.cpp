@@ -64,7 +64,7 @@ bool j1Scene::Start()
 	//Text test
 	helloworld = (UiText*)App->gui->create(UI_LABEL, button);
 	helloworld->SetSentence("Hello World");
-	helloworld->SetPos(500, 200);
+	helloworld->SetPos(90, 25);
 
 
 

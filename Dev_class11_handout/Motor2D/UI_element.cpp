@@ -7,7 +7,6 @@
 UI_element::UI_element(UItype type, UI_element* parent) : type(type), parent(parent)
 {
 	rect = nullptr;
-
 }
 
 UI_element::~UI_element()
@@ -20,13 +19,22 @@ UI_element::~UI_element()
 
 void UI_element::Draw()
 {
+	int x, y;
+	GetGlobalPos(x, y);
 
-	App->render->Blit( App->gui->GetAtlas(), pos.x, pos.y, rect);
+	App->render->Blit( App->gui->GetAtlas(), x, y, rect);
 }
 
 bool UI_element::mouseIn(int x, int y)
 {
-	return ((x >= pos.x && x <= rect->w+pos.x) && (y >= pos.y && y <= rect->h+pos.y));
+	//A global_x global_y precalculation is needed so the mouseIn function corresponds to the
+	//global frame, and their draw.
+	//If the calculation is not done the mouseIn will take the relative pos as global and the
+	//calculation will not match the representation (Draw())
+	int global_x, global_y;
+	GetGlobalPos(global_x,global_y);
+
+	return ((x >= global_x && x <= rect->w + global_x) && (y >= global_y && y <= rect->h + global_y));
 }
 
 void UI_element::SetRect(int x, int y, int w, int h)
@@ -34,20 +42,14 @@ void UI_element::SetRect(int x, int y, int w, int h)
 	rect = new SDL_Rect{ x,y,w,h };
 }
 
+
+//Position will be always relative to the one of the parent
 void UI_element::SetPos(int x, int y)
 {
 	pos = iPoint(x, y);
 }
 
-void UI_element::SetRelativePos(int x, int y)
-{
-	if (parent != nullptr)
-	{
-		pos = iPoint(parent->pos.x + x, parent->pos.y + y);
-	}
-	else
-		SetPos(x, y);
-}
+
 
 void UI_element::Move(int x, int y)
 {
@@ -56,6 +58,20 @@ void UI_element::Move(int x, int y)
 }
 
 
+
+void UI_element::GetGlobalPos(int & x, int & y)
+{
+	if (parent != nullptr)
+	{
+		x = pos.x + parent->pos.x;
+		y = pos.y + parent->pos.y;
+	}
+	else
+	{
+		x = pos.x;
+		y = pos.y;
+	}
+}
 
 UItype UI_element::GetType()
 {

@@ -20,13 +20,10 @@ void UiText::Draw()
 {
 	if (words != nullptr)
 	{
-		if (parent != nullptr)
-		{
-			
-			App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), parent->pos.x + pos.x, parent->pos.y + pos.y, rect);
-		}
-		else
-			App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), pos.x, pos.y, rect);
+		int x, y;
+		GetGlobalPos(x, y);
+
+		App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), x, y, rect);
 	}
 }
 
@@ -34,18 +31,6 @@ void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 {
 
 
-		if (mouseIn(mousepos.x, mousepos.y))
-		{
-			if (key != NULL, keystate != NULL)
-			{
-				SetSentence("Some key pressed");  //TODO: Define the key states that could trigger UiText
-			}
-			else
-				SetSentence("MouseInside");
-		}
-		else
-			SetSentence("MouseOut");
-	
 }
 
 
