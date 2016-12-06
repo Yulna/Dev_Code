@@ -43,6 +43,7 @@ protected:
 	UItype type;
 	SDL_Rect* rect;
 	UI_element* parent;
+	int priority = 0;
 
 };
 

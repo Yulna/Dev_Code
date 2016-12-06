@@ -101,27 +101,50 @@ UI_element * j1Gui::create(UItype type, UI_element* parent)
 
 }
 
-void j1Gui::InputReader(iPoint mousepos, int key, j1KeyState keystate)
+void j1Gui::InputReader(iPoint mousepos)
 {
 
 	p2List_item<UI_element*>* item;
 
-	//TODO: Iterar array de tecles i buscar la tecla que s'ha activat, despres passar el handle_input
-	/*
-	for (int i = 0; i < 300; i++) //TODO: Change that 300 
+	//TODO: Try to mix it in one for (just one handle_input call)
+	
+	//Store the keys pressed and then call the handle_input with them
+	//TODO: Maybe an array of keys?? How to do the shift+i = I input??????
+	int inputKey = 0;
+	j1KeyState inputState = KEY_IDLE;
+
+
+	//Keyboard
+	for (int i = 0; i < MAX_KEYS; i++) 
 	{
+		
 		if (App->input->keyboard[i] != KEY_IDLE)
 		{
 			
 
 		}
 	}
-	*/
+	
+	//Mouse buttons
+	for (int i = 0; i < NUM_MOUSE_BUTTONS; i++) 
+	{
 
+		if (App->input->mouse_buttons[i] != KEY_IDLE)
+		{
+		
+				//Is i+1  since SDL mouse id list starts with 1 and our mouse_button array starts with 0
+				inputKey = i + 1;
+				inputState = App->input->mouse_buttons[i];
+		}
+	}
+	
+	//Mouse input call
 	for (item = elements.start; item != nullptr; item = item->next)
 	{
-		item->data->handle_input(mousepos, key, keystate);
+		item->data->handle_input(mousepos, inputKey, inputState);
 	}
+
+	
 }
 
 // class Gui ---------------------------------------------------

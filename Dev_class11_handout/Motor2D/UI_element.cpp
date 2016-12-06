@@ -7,6 +7,7 @@
 UI_element::UI_element(UItype type, UI_element* parent) : type(type), parent(parent)
 {
 	rect = nullptr;
+	priority;
 }
 
 UI_element::~UI_element()

@@ -40,7 +40,7 @@ public:
 	SDL_Texture* GetAtlas() const;
 	UI_element* create(UItype type, UI_element* parent);
 
-	void InputReader(iPoint mousepos, int key, j1KeyState keystate);
+	void InputReader(iPoint mousepos);
 
 private:
 

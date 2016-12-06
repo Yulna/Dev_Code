@@ -77,6 +77,13 @@ bool j1Scene::Start()
 	writable->SetPos(0, 0);
 
 
+	UI_element* window2 = App->gui->create(UI_ELEMENT, nullptr);
+	window2->SetRect(485, 829, 328, 103);
+	window2->SetPos(100, 100);
+
+	
+
+
 	return true;
 }
 
@@ -87,8 +94,7 @@ bool j1Scene::PreUpdate()
 	{
 		int x, y;
 		App->input->GetMousePosition(x, y); 
-		App->gui->InputReader(iPoint(x, y), NULL, KEY_IDLE);
-	
+		App->gui->InputReader(iPoint(x, y));
 	}
 
 
@@ -118,7 +124,7 @@ bool j1Scene::PreUpdate()
 	}
 
 	
-		App->gui->InputReader(iPoint(x, y), SDL_BUTTON_LEFT, App->input->GetMouseButtonDown(SDL_BUTTON_LEFT));
+		//App->gui->InputReader(iPoint(x, y), SDL_BUTTON_LEFT, App->input->GetMouseButtonDown(SDL_BUTTON_LEFT));
 
 	
 	

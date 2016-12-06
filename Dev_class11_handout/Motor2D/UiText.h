@@ -13,7 +13,7 @@ public:
 	UiText(UItype type, UI_element* parent);
 	~UiText();
 
-	void Draw();
+	virtual void Draw();
 	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);
 
 	void SetSentence(const char* str);

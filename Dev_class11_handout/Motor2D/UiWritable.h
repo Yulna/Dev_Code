@@ -3,6 +3,13 @@
 
 #include "UiText.h"
 
+enum WriteState
+{
+	STAN2DBY,
+	WRITING
+};
+
+
 class UiWritable : public UiText
 {
 public:
@@ -17,7 +24,7 @@ public:
 
 private:
 	bool password;
-
+//	WriteState wstate = STANDBY;
 };
 
 #endif // !__UIWRITABLE_H__
