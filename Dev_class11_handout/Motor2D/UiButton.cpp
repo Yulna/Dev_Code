@@ -31,6 +31,10 @@ void UiButton::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 		}
 		break;
 	case SELECTED:
+		//Make sure the sprite is the correct one and change it otherwise
+		if (rect->x != 412)
+			SetRect(412, 166, 229, 72); //TODO: compare rects or somoething but this is bad
+
 		if (key == SDL_BUTTON_LEFT && keystate == KEY_REPEAT)
 		{
 			bstate = ACTIVATED;
@@ -58,6 +62,9 @@ void UiButton::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 			if (keystate == KEY_IDLE)
 				bstate = SELECTED;
 		}
+	
+
+
 	
 		break;
 	default:

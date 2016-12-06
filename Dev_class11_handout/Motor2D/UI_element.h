@@ -32,7 +32,7 @@ public:
 	void Move(int x, int y);
 
 	//Gets Position in the window framework
-	void GetGlobalPos(int &x, int &y);
+	iPoint GetGlobalPos();
 
 	UItype GetType();
 

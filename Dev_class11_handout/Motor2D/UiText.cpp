@@ -21,9 +21,9 @@ void UiText::Draw()
 	if (words != nullptr)
 	{
 		int x, y;
-		GetGlobalPos(x, y);
+		iPoint gpos = GetGlobalPos();
 
-		App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), x, y, rect);
+		App->render->Blit(App->font->Print(words->GetString(), { 255,255,255,255 }, nullptr), gpos.x, gpos.y, rect);
 	}
 }
 

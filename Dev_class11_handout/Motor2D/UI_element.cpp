@@ -20,9 +20,9 @@ UI_element::~UI_element()
 void UI_element::Draw()
 {
 	int x, y;
-	GetGlobalPos(x, y);
+	iPoint gpos = GetGlobalPos();
 
-	App->render->Blit( App->gui->GetAtlas(), x, y, rect);
+	App->render->Blit( App->gui->GetAtlas(), gpos.x, gpos.y, rect);
 }
 
 bool UI_element::mouseIn(int x, int y)
@@ -32,9 +32,9 @@ bool UI_element::mouseIn(int x, int y)
 	//If the calculation is not done the mouseIn will take the relative pos as global and the
 	//calculation will not match the representation (Draw())
 	int global_x, global_y;
-	GetGlobalPos(global_x,global_y);
+	iPoint gpos = GetGlobalPos();
 
-	return ((x >= global_x && x <= rect->w + global_x) && (y >= global_y && y <= rect->h + global_y));
+	return ((x >= gpos.x && x <= rect->w + gpos.x) && (y >= gpos.y && y <= rect->h + gpos.y));
 }
 
 void UI_element::SetRect(int x, int y, int w, int h)
@@ -59,18 +59,21 @@ void UI_element::Move(int x, int y)
 
 
 
-void UI_element::GetGlobalPos(int & x, int & y)
+iPoint UI_element::GetGlobalPos()
 {
+	
+	iPoint ret;
 	if (parent != nullptr)
 	{
-		x = pos.x + parent->pos.x;
-		y = pos.y + parent->pos.y;
+		ret.x = pos.x + parent->GetGlobalPos().x;
+		ret.y = pos.y + parent->GetGlobalPos().y;
 	}
 	else
 	{
-		x = pos.x;
-		y = pos.y;
+		ret.x = pos.x;
+		ret.y = pos.y;
 	}
+	return ret;
 }
 
 UItype UI_element::GetType()
