@@ -51,3 +51,17 @@ void UiText::SetSentence(const char* str)
 	rect = new SDL_Rect{ 0,0,w,h };
 }
 
+void UiText::SetSentence2(const char* str)
+{
+	if (words != nullptr)
+	{
+		delete words;
+	}
+
+	words = new p2SString(str);
+	int w, h;
+	App->font->CalcSize(words->GetString(), w, h);
+
+	rect = new SDL_Rect{ 0,0,w,h/2 };
+}
+

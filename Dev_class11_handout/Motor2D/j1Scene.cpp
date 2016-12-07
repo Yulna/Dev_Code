@@ -59,28 +59,28 @@ bool j1Scene::Start()
 	//Button test
 	UiButton* button = (UiButton*)App->gui->create(UI_BUTTON, window);
 	button->SetRect(1, 110, 229, 70 );
-	button->SetPos(50, 100);
+	button->SetPos(75, 200);
 
 	//Text test
 	helloworld = (UiText*)App->gui->create(UI_LABEL, button);
-	helloworld->SetSentence("Hello World");
-	helloworld->SetPos(90, 25);
+	helloworld->SetSentence("Hello World Woabnk hjbf aha fjkdgjikag jdagkhjdfg vhjdfg dfa gjdfagh dfkajgh fa gjadfgkahj");
+	helloworld->SetPos(50, 25);
 
 
 
 	//Writable text testing
 	UI_element* text_back = App->gui->create(UI_ELEMENT, window);
 	text_back->SetRect(486,	564,350 ,69);
-	text_back->SetPos(100, 200);
+	text_back->SetPos(50, 100);
 
 	UiWritable* writable = (UiWritable*)App->gui->create(UI_WRITABLE, text_back);
 	writable->SetPos(0, 0);
 
-
+/*
 	UI_element* window2 = App->gui->create(UI_ELEMENT, nullptr);
 	window2->SetRect(485, 829, 328, 103);
 	window2->SetPos(100, 100);
-
+	*/
 	
 
 
@@ -97,7 +97,11 @@ bool j1Scene::PreUpdate()
 		App->gui->InputReader(iPoint(x, y));
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
+		helloworld->Move2(0,-2);
 
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+		helloworld->Move2(0, 2);
 
 	// debug pathfing ------------------
 	static iPoint origin;

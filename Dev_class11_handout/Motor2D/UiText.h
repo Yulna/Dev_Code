@@ -17,12 +17,12 @@ public:
 	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);
 
 	void SetSentence(const char* str);
-
+	void SetSentence2(const char* str);
 
 
 protected:
 	p2SString* words = nullptr;
-
+	
 
 };
 

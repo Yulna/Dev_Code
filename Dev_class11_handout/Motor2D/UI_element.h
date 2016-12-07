@@ -30,6 +30,7 @@ public:
 	void SetRect(int x, int y, int w, int h);
 	void SetPos(int x, int y);
 	void Move(int x, int y);
+	void Move2(int x, int y);
 
 	//Gets Position in the window framework
 	iPoint GetGlobalPos();

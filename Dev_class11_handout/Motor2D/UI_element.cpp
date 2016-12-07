@@ -58,6 +58,15 @@ void UI_element::Move(int x, int y)
 	pos.y = pos.y + y;
 }
 
+void UI_element::Move2(int x, int y)
+{
+	pos.x = pos.x + x;
+	pos.y = pos.y + y;
+
+	rect->x = rect->x - x ;
+	rect->y = rect->y - y ;
+}
+
 
 
 iPoint UI_element::GetGlobalPos()
