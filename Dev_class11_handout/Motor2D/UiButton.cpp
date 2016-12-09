@@ -8,6 +8,7 @@
 UiButton::UiButton(UItype type, UI_element* parent) : UI_element(type, parent)
 {
 	bstate = STANDBY;
+	viewport = true;
 }
 
 UiButton::~UiButton()

@@ -23,7 +23,27 @@ void UI_element::Draw()
 	int x, y;
 	iPoint gpos = GetGlobalPos();
 
-	App->render->Blit( App->gui->GetAtlas(), gpos.x, gpos.y, rect);
+
+	
+
+	if (type == UI_BUTTON)
+	{
+		
+		//Important to take the position of the parent or tthe viewport will start at the sprite pos in the texture (atlas)
+		SDL_Rect temp2;
+		temp2.x = parent->GetGlobalPos().x;
+		temp2.y = parent->GetGlobalPos().y;
+		temp2.w = parent->rect->w;
+		temp2.h = parent->rect->h;
+
+		SDL_RenderSetViewport(App->render->renderer, &temp2);
+		App->render->Blit(App->gui->GetAtlas(), pos.x, pos.y, rect);
+		App->render->ResetViewPort();
+
+	}
+	else
+		App->render->Blit(App->gui->GetAtlas(), gpos.x, gpos.y, rect);
+
 }
 
 bool UI_element::mouseIn(int x, int y)
@@ -63,8 +83,8 @@ void UI_element::Move2(int x, int y)
 	pos.x = pos.x + x;
 	pos.y = pos.y + y;
 
-	rect->x = rect->x - x ;
-	rect->y = rect->y - y ;
+	rect->x = rect->x - x;
+	rect->y = rect->y - y;
 }
 
 
