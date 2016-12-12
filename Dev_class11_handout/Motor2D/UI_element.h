@@ -34,8 +34,11 @@ public:
 
 	//Gets Position in the window framework
 	iPoint GetGlobalPos();
-
+	
 	UItype GetType();
+
+	bool IsViewPort();
+
 
 
 	iPoint pos;

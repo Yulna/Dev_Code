@@ -29,7 +29,7 @@ void UI_element::Draw()
 	if (type == UI_BUTTON)
 	{
 		
-		//Important to take the position of the parent or tthe viewport will start at the sprite pos in the texture (atlas)
+		//Important to take the position of the parent or the viewport will start at the sprite pos in the texture (atlas)
 		SDL_Rect temp2;
 		temp2.x = parent->GetGlobalPos().x;
 		temp2.y = parent->GetGlobalPos().y;
@@ -109,4 +109,12 @@ iPoint UI_element::GetGlobalPos()
 UItype UI_element::GetType()
 {
 	return type;
+}
+
+bool UI_element::IsViewPort()
+{
+	if (viewport)
+		return true;
+	else
+		return false;
 }
