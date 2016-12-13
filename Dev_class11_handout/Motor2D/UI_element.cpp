@@ -24,20 +24,22 @@ void UI_element::Draw()
 	iPoint gpos = GetGlobalPos();
 
 
-	
+	UI_element* tempviewport = nullptr;
+	if (parent != nullptr)
+	 tempviewport = parent->IsViewPort();
 
-	if (type == UI_BUTTON)
+	if (tempviewport !=nullptr)
 	{
 		
 		//Important to take the position of the parent or the viewport will start at the sprite pos in the texture (atlas)
-		SDL_Rect temp2;
-		temp2.x = parent->GetGlobalPos().x;
-		temp2.y = parent->GetGlobalPos().y;
-		temp2.w = parent->rect->w;
-		temp2.h = parent->rect->h;
+		SDL_Rect temprect;
+		temprect.x = tempviewport->GetGlobalPos().x;
+		temprect.y = tempviewport->GetGlobalPos().y;
+		temprect.w = tempviewport->rect->w;
+		temprect.h = tempviewport->rect->h;
 
-		SDL_RenderSetViewport(App->render->renderer, &temp2);
-		App->render->Blit(App->gui->GetAtlas(), pos.x, pos.y, rect);
+		SDL_RenderSetViewport(App->render->renderer, &temprect);
+		App->render->Blit(App->gui->GetAtlas(), GetViewPortPos().x, GetViewPortPos().y, rect);
 		App->render->ResetViewPort();
 
 	}
@@ -52,10 +54,11 @@ bool UI_element::mouseIn(int x, int y)
 	//global frame, and their draw.
 	//If the calculation is not done the mouseIn will take the relative pos as global and the
 	//calculation will not match the representation (Draw())
-	int global_x, global_y;
+//	int global_x, global_y;
 	iPoint gpos = GetGlobalPos();
-
+	
 	return ((x >= gpos.x && x <= rect->w + gpos.x) && (y >= gpos.y && y <= rect->h + gpos.y));
+
 }
 
 void UI_element::SetRect(int x, int y, int w, int h)
@@ -91,7 +94,6 @@ void UI_element::Move2(int x, int y)
 
 iPoint UI_element::GetGlobalPos()
 {
-	
 	iPoint ret;
 	if (parent != nullptr)
 	{
@@ -103,6 +105,27 @@ iPoint UI_element::GetGlobalPos()
 		ret.x = pos.x;
 		ret.y = pos.y;
 	}
+
+	return ret;
+}
+
+iPoint UI_element::GetViewPortPos()
+{
+	if (viewport)
+		return iPoint(0, 0);
+
+	iPoint ret;
+	if (parent != nullptr)
+	{
+		ret.x = pos.x + parent->GetGlobalPos().x;
+		ret.y = pos.y + parent->GetGlobalPos().y;
+	}
+	else
+	{
+		ret.x = pos.x;
+		ret.y = pos.y;
+	}
+
 	return ret;
 }
 
@@ -111,10 +134,17 @@ UItype UI_element::GetType()
 	return type;
 }
 
-bool UI_element::IsViewPort()
+UI_element* UI_element::IsViewPort()
 {
 	if (viewport)
-		return true;
+	{
+		return this;
+	}
 	else
-		return false;
+	{
+		if (parent != nullptr)
+			return parent->IsViewPort();
+		else
+			return nullptr;
+	}
 }

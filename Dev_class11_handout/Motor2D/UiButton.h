@@ -19,7 +19,7 @@ public:
 
 	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);
 
-private:
+protected:
 	UiButtonState bstate = STANDBY;
 
 };

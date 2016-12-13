@@ -9,6 +9,8 @@
 #include "UiText.h"
 #include "UiButton.h"
 #include "UiWritable.h"
+#include "UiMask.h"
+#include "UiSliderButton.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -86,8 +88,14 @@ UI_element * j1Gui::create(UItype type, UI_element* parent)
 	case UI_ELEMENT:
 		return elements.add(new UI_element(type, parent))->data;
 		break;
+	case UI_MASK:
+		return elements.add(new UiMask(type, parent))->data;
+		break;
 	case UI_BUTTON:
 		return elements.add(new UiButton(type, parent))->data;
+		break;
+	case UI_SLIDERBUTTON:
+		return elements.add(new UiSliderButton(type, parent))->data;
 		break;
 	case UI_LABEL:
 		return elements.add(new UiText(type, parent))->data;

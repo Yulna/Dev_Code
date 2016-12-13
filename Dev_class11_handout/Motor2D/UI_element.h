@@ -12,7 +12,9 @@ class SDL_Rect;
 
 enum UItype {
 	UI_ELEMENT,
+	UI_MASK,
 	UI_BUTTON,
+	UI_SLIDERBUTTON,
 	UI_LABEL,
 	UI_WRITABLE
 };
@@ -34,21 +36,26 @@ public:
 
 	//Gets Position in the window framework
 	iPoint GetGlobalPos();
+	iPoint GetViewPortPos();
 	
 	UItype GetType();
 
-	bool IsViewPort();
+	UI_element* IsViewPort();
 
 
 
 	iPoint pos;
 	bool viewport = false;
 	SDL_Rect* rect;
+
+
 protected:
 	UItype type;
 
 	UI_element* parent;
 	int priority = 0;
+
+
 
 };
 

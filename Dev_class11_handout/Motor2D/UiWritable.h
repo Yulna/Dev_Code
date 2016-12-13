@@ -5,7 +5,7 @@
 
 enum WriteState
 {
-	STAN2DBY,
+	WRITE_OFF,
 	WRITING
 };
 
@@ -24,7 +24,7 @@ public:
 
 private:
 	bool password;
-//	WriteState wstate = STANDBY;
+	WriteState wstate = WRITE_OFF;
 };
 
 #endif // !__UIWRITABLE_H__

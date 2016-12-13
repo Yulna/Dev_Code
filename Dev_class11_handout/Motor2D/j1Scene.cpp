@@ -14,6 +14,8 @@
 #include "UiText.h"
 #include "UiButton.h"
 #include "UiWritable.h"
+#include "UiSliderButton.h"
+#include "UiMask.h"
 
 
 j1Scene::j1Scene() : j1Module()
@@ -55,6 +57,7 @@ bool j1Scene::Start()
 	UI_element* window = App->gui->create(UI_ELEMENT, nullptr);
 	window->SetRect( 15,515,466,508 );
 	window->SetPos(100, 100);
+	window->viewport = true;
 
 	//Button test
 	UiButton* button = (UiButton*)App->gui->create(UI_BUTTON, window);
@@ -75,6 +78,21 @@ bool j1Scene::Start()
 
 	UiWritable* writable = (UiWritable*)App->gui->create(UI_WRITABLE, text_back);
 	writable->SetPos(0, 0);
+
+
+	//Slider
+	UiMask* slidermask = (UiMask*)App->gui->create(UI_MASK, nullptr);
+	slidermask->SetPos(0, 0);
+	slidermask->SetRect(0, 0, 50, 50);
+
+	UiSliderButton* sliderbutton = (UiSliderButton*)App->gui->create(UI_SLIDERBUTTON, nullptr);
+	sliderbutton->SetPos(100, 20);
+	sliderbutton->SetRect(843, 320, 15, 29);
+	sliderbutton->linkedobj = slidermask;
+
+	UiText* helloworld2 = (UiText*)App->gui->create(UI_LABEL, slidermask);
+	helloworld2->SetSentence("2Hello World 2\n Woabnk hjbf aha \n fjkdgjikag jdagkhjdfg vhjdfg dfa gjdfagh dfkajgh fa gjadfgkahj");
+	helloworld2->SetPos(0, 0);
 
 /*
 	UI_element* window2 = App->gui->create(UI_ELEMENT, nullptr);
@@ -97,11 +115,7 @@ bool j1Scene::PreUpdate()
 		App->gui->InputReader(iPoint(x, y));
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
-		helloworld->Move2(0,-2);
-
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		helloworld->Move2(0, 2);
+	
 
 	// debug pathfing ------------------
 	static iPoint origin;

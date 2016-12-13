@@ -74,7 +74,9 @@ public:
 
 
 
-
+public:
+	p2SString input_text;
+	bool letter_printed = true;
 
 
 private:

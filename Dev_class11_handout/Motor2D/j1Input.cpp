@@ -84,6 +84,10 @@ bool j1Input::PreUpdate()
 			mouse_buttons[i] = KEY_IDLE;
 	}
 
+
+	SDL_StartTextInput();
+	letter_printed = true;
+
 	while(SDL_PollEvent(&event) != 0)
 	{
 		switch(event.type)
@@ -91,6 +95,12 @@ bool j1Input::PreUpdate()
 			case SDL_QUIT:
 				windowEvents[WE_QUIT] = true;
 			break;
+
+			case SDL_TEXTINPUT:
+				input_text.create(event.text.text);
+				letter_printed = false;
+				break;
+
 
 			case SDL_WINDOWEVENT:
 				switch(event.window.event)

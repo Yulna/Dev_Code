@@ -64,6 +64,12 @@
     <ClCompile Include="UiWritable.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
+    <ClCompile Include="UiMask.cpp">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UiSliderButton.cpp">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -148,6 +154,12 @@
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
     <ClInclude Include="UiWritable.h">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UiMask.h">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UiSliderButton.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
   </ItemGroup>
