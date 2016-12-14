@@ -1,0 +1,32 @@
+#ifndef __UITEXT_H__
+#define __UITEXT_H__
+
+#include "UI_element.h"
+#include "p2SString.h"
+
+
+ 
+class UiText : public UI_element
+{
+public:
+
+	UiText(UItype type, UI_element* parent);
+	~UiText();
+
+	virtual void Draw();
+	virtual void handle_input(iPoint mousepos, int key, j1KeyState keystate);
+
+	void SetSentence(const char* str);
+	void SetSentence2(const char* str);
+
+
+protected:
+	p2SString* words = nullptr;
+	
+
+};
+
+
+
+#endif // !__WORDSBOX_H__
+
