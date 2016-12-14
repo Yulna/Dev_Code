@@ -117,8 +117,8 @@ iPoint UI_element::GetViewPortPos()
 	iPoint ret;
 	if (parent != nullptr)
 	{
-		ret.x = pos.x + parent->GetGlobalPos().x;
-		ret.y = pos.y + parent->GetGlobalPos().y;
+		ret.x = pos.x + parent->GetViewPortPos().x;
+		ret.y = pos.y + parent->GetViewPortPos().y;
 	}
 	else
 	{
