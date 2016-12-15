@@ -5,7 +5,6 @@
 
 UiSliderButton::UiSliderButton(UItype type, UI_element* parent) : UiButton(type, parent)
 {
-
 }
 
 UiSliderButton::~UiSliderButton()
@@ -45,13 +44,14 @@ void UiSliderButton::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 		{
 			int x, y;
 			App->input->GetMouseMotion(x, y);
-			if (pos.y > -100 && pos.y < 100)
+			if (GetGlobalPos().y+y > parent->pos.y && GetGlobalPos().y+y < (parent->rect->h + parent->pos.y))
 			{
+
+
 				Move(0, y);
 				linkedobj->Move(0, -y);
 			}
-			else
-				Move(0, -1);
+							
 
 			if (keystate == KEY_UP)
 				bstate = SELECTED;

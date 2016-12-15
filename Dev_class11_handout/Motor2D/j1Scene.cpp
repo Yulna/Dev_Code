@@ -85,8 +85,12 @@ bool j1Scene::Start()
 	slidermask->SetPos(0, 0);
 	slidermask->SetRect(0, 0, 50, 50);
 
-	UiSliderButton* sliderbutton = (UiSliderButton*)App->gui->create(UI_SLIDERBUTTON, nullptr);
-	sliderbutton->SetPos(100, 20);
+	UiMask* sliderrect = (UiMask*)App->gui->create(UI_MASK, nullptr);
+	sliderrect->SetPos(100, 200);
+	sliderrect->SetRect(972, 785, 15, 200);
+	sliderrect->viewport = false;
+	UiSliderButton* sliderbutton = (UiSliderButton*)App->gui->create(UI_SLIDERBUTTON, sliderrect);
+	sliderbutton->SetPos(0, 5);
 	sliderbutton->SetRect(843, 320, 15, 29);
 	sliderbutton->linkedobj = slidermask;
 
