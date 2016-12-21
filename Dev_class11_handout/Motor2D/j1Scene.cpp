@@ -79,7 +79,7 @@ bool j1Scene::Start()
 	UiWritable* writable = (UiWritable*)App->gui->create(UI_WRITABLE, text_back);
 	writable->SetPos(0, 0);
 
-
+/*
 	//Slider
 	UiMask* slidermask = (UiMask*)App->gui->create(UI_MASK, nullptr);
 	slidermask->SetPos(0, 0);
@@ -97,6 +97,7 @@ bool j1Scene::Start()
 	UiText* helloworld2 = (UiText*)App->gui->create(UI_LABEL, slidermask);
 	helloworld2->SetSentence("2Hello World 2\n Woabnk hjbf aha \n fjkdgjikag jdagkhjdfg vhjdfg dfa gjdfagh dfkajgh fa gjadfgkahj");
 	helloworld2->SetPos(0, 0);
+	*/
 
 /*
 	UI_element* window2 = App->gui->create(UI_ELEMENT, nullptr);
