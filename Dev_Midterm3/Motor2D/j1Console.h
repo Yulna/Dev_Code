@@ -10,16 +10,18 @@ public:
 	~j1Console();
 
 	// Called before render is available
-	bool Awake(pugi::xml_node&);
+	//bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
-	bool Start();
+//	bool Start();
 
 	// Called each loop iteration
-	bool PreUpdate();
+//	bool PreUpdate();
+
+	bool Update(float dt);
 
 	// Called before quitting
-	bool CleanUp();
+//	bool CleanUp();
 
 };
 
