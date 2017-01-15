@@ -1,0 +1,12 @@
+atlas: gui/atlas_lol.png
+
+Screen Size: 1024, 576
+
+Background: { 0, 1600, 1024, 576 }
+
+Hero Thumbnails: {0, 290, 300, 169}
+
+Cursor: {900, 314, 68, 54}
+
+First Heroe: {0, 1024, 205, 287}
+There are two rows of 5 heroes each, no spacing between them
