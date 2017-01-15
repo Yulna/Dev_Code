@@ -3,7 +3,7 @@
 #include "j1Input.h"
 #include "SDL\include\SDL.h"	
 
-UiWritable::UiWritable(UItype type, UI_element * parent) : UiText(type, parent)
+UiWritable::UiWritable(UItype type, UI_element * parent) : UiLabel(type, parent)
 {
 	words = new p2SString;
 	password = false;
@@ -11,7 +11,7 @@ UiWritable::UiWritable(UItype type, UI_element * parent) : UiText(type, parent)
 
 }
 
-UiWritable::UiWritable(UItype type, UI_element * parent, bool password) : UiText(type, parent), password(password)
+UiWritable::UiWritable(UItype type, UI_element * parent, bool password) : UiLabel(type, parent), password(password)
 {
 }
 

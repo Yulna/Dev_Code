@@ -13,7 +13,7 @@
 
 #include "UiSelectBox.h"
 #include "UiButton.h"
-#include "UiText.h"
+#include "UiLabel.h"
 #include "UiMask.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -40,6 +40,10 @@ bool j1Scene::Start()
 	
 	
 	
+
+
+
+	/*
 	//EXERCICE 1
 	UI_element* background = App->gui->create(UI_ELEMENT, nullptr);
 	background->SetRect(0, 1600, 1024, 576);
@@ -53,10 +57,10 @@ bool j1Scene::Start()
 	button->SetRect(1, 110, 229, 70);
 	button->SetPos(110, 400);
 
-	UiText* continue_ = (UiText*)App->gui->create(UI_LABEL, button);
+	UiLabel* continue_ = (UiLabel*)App->gui->create(UI_LABEL, button);
 	continue_->SetSentence("Continue");
 	continue_->SetPos(60,18);
-	UiText* title = (UiText*)App->gui->create(UI_LABEL, window);
+	UiLabel* title = (UiLabel*)App->gui->create(UI_LABEL, window);
 	title->SetSentence("Select Your Character");
 	title->SetPos(110, 40);
 
@@ -79,6 +83,8 @@ bool j1Scene::Start()
 	UI_element* bigthumbnail = App->gui->create(UI_ELEMENT, amplifiedviewport);
 	bigthumbnail->SetRect(0, 1024, 205*5, 287*2);
 	selector->SetAmplification(bigthumbnail);
+
+	*/
 	
 
 

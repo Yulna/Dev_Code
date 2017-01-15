@@ -1,7 +1,7 @@
 #ifndef __UIWRITABLE_H__
 #define __UIWRITABLE_H__
 
-#include "UiText.h"
+#include "UiLabel.h"
 
 enum WriteState
 {
@@ -10,7 +10,7 @@ enum WriteState
 };
 
 
-class UiWritable : public UiText
+class UiWritable : public UiLabel
 {
 public:
 	

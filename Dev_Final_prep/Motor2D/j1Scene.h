@@ -5,7 +5,7 @@
 
 struct SDL_Texture;
 class GuiImage;
-class GuiText;
+class GUiLabel;
 
 class UiSelectBox;
 
@@ -39,7 +39,7 @@ public:
 private:
 	SDL_Texture* debug_tex;
 	GuiImage* banner;
-	GuiText* text;
+	GUiLabel* text;
 
 
 };

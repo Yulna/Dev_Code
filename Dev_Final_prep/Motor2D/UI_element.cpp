@@ -54,7 +54,7 @@ bool UI_element::mouseIn(int x, int y)
 	//global frame, and their draw.
 	//If the calculation is not done the mouseIn will take the relative pos as global and the
 	//calculation will not match the representation (Draw())
-//	int global_x, global_y;
+	//int global_x, global_y;
 	iPoint gpos = GetGlobalPos();
 	
 	return ((x >= gpos.x && x <= rect->w + gpos.x) && (y >= gpos.y && y <= rect->h + gpos.y));

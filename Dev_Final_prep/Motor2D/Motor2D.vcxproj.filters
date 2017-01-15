@@ -156,9 +156,6 @@
     <ClInclude Include="animation.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="UiText.h">
-      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
-    </ClInclude>
     <ClInclude Include="UiButton.h">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
@@ -179,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="j1Console.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="UiLabel.h">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

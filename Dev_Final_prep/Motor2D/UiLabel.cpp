@@ -1,4 +1,4 @@
-#include "UiText.h"
+#include "UiLabel.h"
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Render.h"
@@ -7,18 +7,18 @@
 #include "UI_element.h"
 
 
-UiText::UiText(UItype type, UI_element* parent) : UI_element(type, parent)
+UiLabel::UiLabel(UItype type, UI_element* parent) : UI_element(type, parent)
 {
 	words = nullptr;
 }
 
-UiText::~UiText()
+UiLabel::~UiLabel()
 {
 	if(words != nullptr)
 	delete words;
 }
 
-void UiText::Draw()
+void UiLabel::Draw()
 {
 	
 	UI_element* tempviewport = nullptr;
@@ -47,7 +47,7 @@ void UiText::Draw()
 	}
 }
 
-void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
+void UiLabel::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 {
 
 
@@ -57,7 +57,7 @@ void UiText::handle_input(iPoint mousepos, int key, j1KeyState keystate)
 
 
 
-void UiText::SetSentence(const char* str)
+void UiLabel::SetSentence(const char* str)
 {
 	if (words != nullptr)
 	{

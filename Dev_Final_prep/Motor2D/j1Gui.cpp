@@ -6,7 +6,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Gui.h"
-#include "UiText.h"
+#include "UiLabel.h"
 #include "UiButton.h"
 #include "UiWritable.h"
 #include "UiMask.h"
@@ -101,7 +101,7 @@ UI_element * j1Gui::create(UItype type, UI_element* parent)
 		return elements.add(new UiSliderButton(type, parent))->data;
 		break;
 	case UI_LABEL:
-		return elements.add(new UiText(type, parent))->data;
+		return elements.add(new UiLabel(type, parent))->data;
 		break;
 	case UI_WRITABLE:
 		return elements.add(new UiWritable(type, parent))->data;
