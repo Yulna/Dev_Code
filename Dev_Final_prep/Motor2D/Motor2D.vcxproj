@@ -100,7 +100,7 @@
     <ClCompile Include="UiSliderButton.cpp" />
     <ClCompile Include="UiWritable.cpp" />
     <ClCompile Include="UI_element.cpp" />
-    <ClCompile Include="UiText.cpp" />
+    <ClCompile Include="UiLabel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />

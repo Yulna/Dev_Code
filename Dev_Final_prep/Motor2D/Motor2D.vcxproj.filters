@@ -55,9 +55,6 @@
     <ClCompile Include="UI_element.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
-    <ClCompile Include="UiText.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
-    </ClCompile>
     <ClCompile Include="UiButton.cpp">
       <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
@@ -78,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="j1Console.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="UiLabel.cpp">
+      <Filter>Desenvolupament  ========\Modules\UI_elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
